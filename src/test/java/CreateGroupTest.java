@@ -48,7 +48,6 @@ public class CreateGroupTest extends BaseTest{
         UserPage usrPage = usrLoginPage.get(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupUrl);
         Assert.assertTrue(usrWebDriver.findElement(By.xpath("//*[@class ='stub-empty __18plus']")).isDisplayed());
-        usrWebDriver.close();
     }
 
     @After
