@@ -4,13 +4,11 @@ import cards.SelectGroupsCard;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class GroupsPage extends BasePage {
 
     private final WebDriver webDriver;
     private final By CREATE_GROUP_LOCATOR = By.className("create-group");
-    private final By FIND_GROUP_LOCATOR = By.id(".//*[@id='query_userAltGroupSearch']");
 
     GroupsPage(WebDriver webDriver) {
         super(webDriver);

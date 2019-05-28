@@ -9,7 +9,7 @@ public class UserPage extends BasePage{
     private WebDriver webDriver;
     private static final By GROUPS_LOCATOR = By.xpath(".//*[@class='navigation']/*[@class='nav-side __navigation']/*[@data-l='t,userAltGroup']");
 
-    public UserPage(WebDriver webDriver) {
+    UserPage(WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         check();

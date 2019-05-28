@@ -8,10 +8,10 @@ class UserFactory {
         User user = null;
         switch (role){
             case USER:
-                user = new User(AppConfig.loginUser, AppConfig.password);
+                user = new User(AppConfig.loginUser, AppConfig.password, AppConfig.usrId);
                 break;
             case CREATOR:
-                user = new User(AppConfig.loginCreator, AppConfig.password);
+                user = new User(AppConfig.loginCreator, AppConfig.password, AppConfig.creatorId);
                 break;
         }
         return user;
