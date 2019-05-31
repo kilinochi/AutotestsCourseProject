@@ -4,8 +4,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+
 import pages.GroupPage;
+import model.Element;
 
 public class ModalNewHolderCard {
 
@@ -19,34 +20,27 @@ public class ModalNewHolderCard {
 
     private final WebDriver webDriver;
 
-    public ModalNewHolderCard(WebDriver webDriver) {
+    ModalNewHolderCard(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-
-    public void inputName(String groupName) {
-        WebElement inputName = webDriver.findElement(NAME_GROUP_LOCATOR);
-        inputName.sendKeys(groupName);
+    public void inputName(final String groupName) {
+        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR),groupName);
     }
 
-    public void inputDescription(String description) {
-        WebElement inputDescription = webDriver.findElement(DESCRIPTION_LOCATOR);
-        inputDescription.sendKeys(description);
+    public void inputDescription(final String description) {
+        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR), description);
     }
 
     public void selectCategory() {
-        WebElement selectCategory = webDriver.findElement(CATEGORY_MENU_AUTO);
-        selectCategory.click();
+        Element.click(webDriver.findElement(NAME_GROUP_LOCATOR));
     }
     public void selectRestriction() {
-        WebElement selectRestriction = webDriver.findElement(AGE_18_SELECTOR);
-        selectRestriction.click();
+        Element.click(webDriver.findElement(AGE_18_SELECTOR));
     }
 
     public GroupPage getGroupPage() {
-        WebElement createGroupBtn = webDriver.findElement(CREATE_GROUP_BUTTON);
-        createGroupBtn.click();
+        Element.click(webDriver.findElement(CREATE_GROUP_BUTTON));
         return new GroupPage(webDriver);
     }
 }
-

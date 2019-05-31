@@ -4,7 +4,7 @@ import model.User;
 class UserFactory {
     private UserFactory(){}
 
-    static User getUser(User.Role role){
+    static User getUser(final User.Role role){
         User user = null;
         switch (role){
             case USER:
