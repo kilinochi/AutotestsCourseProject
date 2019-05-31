@@ -1,5 +1,6 @@
 package pages;
 
+import model.Element;
 import model.User;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -19,9 +20,9 @@ public class LoginPage extends BasePage{
     }
 
     public UserPage get(final User user) {
-        driver.findElement(LOGIN_LOCATOR).sendKeys(user.getLogin());
-        driver.findElement(PASSWORD_LOCATOR).sendKeys(user.getPassword());
-        driver.findElement(SUBMIT_LOCATOR).click();
+        Element.sendKeys(webDriver.findElement(LOGIN_LOCATOR),user.getLogin());
+        Element.sendKeys(webDriver.findElement(PASSWORD_LOCATOR),user.getPassword());
+        Element.click(driver.findElement(SUBMIT_LOCATOR));
         return new UserPage(driver);
     }
 

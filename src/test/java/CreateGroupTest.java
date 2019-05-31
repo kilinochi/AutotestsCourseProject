@@ -46,7 +46,7 @@ public class CreateGroupTest extends BaseTest{
         creatorModalNewHolderCard.selectCategory();
         creatorModalNewHolderCard.selectRestriction();
         creatorModalNewHolderCard.getGroupPage();
-       // new WebDriverWait(creatorWebDriver, 10).until(ExpectedConditions.);
+        new WebDriverWait(creatorWebDriver, 10).until(ExpectedConditions.);
         String groupId = creatorWebDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
         new LoginPage(usrWebDriver).get(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);

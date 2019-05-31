@@ -1,6 +1,7 @@
 package pages;
 
 import cards.SelectGroupsCard;
+import model.Element;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ public class GroupsPage extends BasePage {
     }
 
     public SelectGroupsCard getSelectGroupCard() {
-        webDriver.findElement(CREATE_GROUP_LOCATOR).click();
+        Element.click(webDriver.findElement(CREATE_GROUP_LOCATOR));
         return new SelectGroupsCard(webDriver);
     }
 

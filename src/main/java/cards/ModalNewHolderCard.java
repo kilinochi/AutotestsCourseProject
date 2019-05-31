@@ -1,9 +1,12 @@
 package cards;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import pages.GroupPage;
+import model.Element;
 
 public class ModalNewHolderCard {
 
@@ -22,23 +25,22 @@ public class ModalNewHolderCard {
     }
 
     public void inputName(final String groupName) {
-        final WebElement inputName = webDriver.findElement(NAME_GROUP_LOCATOR);
-        inputName.sendKeys(groupName);
+        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR),groupName);
     }
 
     public void inputDescription(final String description) {
-        webDriver.findElement(DESCRIPTION_LOCATOR).sendKeys(description);
+        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR), description);
     }
 
     public void selectCategory() {
-        webDriver.findElement(CATEGORY_MENU_AUTO).click();
+        Element.click(webDriver.findElement(NAME_GROUP_LOCATOR));
     }
     public void selectRestriction() {
-        webDriver.findElement(AGE_18_SELECTOR).click();
+        Element.click(webDriver.findElement(AGE_18_SELECTOR));
     }
 
     public GroupPage getGroupPage() {
-        webDriver.findElement(CREATE_GROUP_BUTTON).click();
+        Element.click(webDriver.findElement(CREATE_GROUP_BUTTON));
         return new GroupPage(webDriver);
     }
 }

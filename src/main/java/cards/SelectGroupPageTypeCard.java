@@ -1,5 +1,6 @@
 package cards;
 
+import model.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +15,7 @@ public class SelectGroupPageTypeCard {
     }
 
     public ModalNewHolderCard getSelectGroupPageType(){
-        webElement.click();
+        Element.click(webElement);
         return new ModalNewHolderCard(webDriver);
     }
 }

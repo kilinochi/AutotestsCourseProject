@@ -1,6 +1,7 @@
 package pages;
 
 import config.AppConfig;
+import model.Element;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class GroupPage extends BasePage {
         super(webDriver);
         this.webDriver = webDriver;
         groupName = webDriver.findElement(GROUP_NAME_SELECTOR).getAttribute("innerHTML");
+        check();
     }
 
     public String getGroupName() {
@@ -28,9 +30,9 @@ public class GroupPage extends BasePage {
     }
 
     public void deleteGroup() {
-        webDriver.findElement(SETTINGS_SELECTOR).click();
-        webDriver.findElement(DELETE_GROUP_SELECTOR).click();
-        webDriver.findElement(DELETE_BUTTON_SELECTOR).click();
+        Element.click(webDriver.findElement(SETTINGS_SELECTOR));
+        Element.click(webDriver.findElement(DELETE_GROUP_SELECTOR));
+        Element.click(webDriver.findElement(DELETE_BUTTON_SELECTOR));
     }
 
     @Override

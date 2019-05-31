@@ -1,5 +1,6 @@
 package pages;
 
+import model.Element;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ public class UserPage extends BasePage{
     }
 
     public GroupsPage getGroupsPage(){
-        webDriver.findElement(GROUPS_LOCATOR).click();
+        Element.click(webDriver.findElement(GROUPS_LOCATOR));
         return new GroupsPage(webDriver);
     }
 
