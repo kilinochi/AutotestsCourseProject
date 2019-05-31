@@ -10,12 +10,11 @@ public class GroupsPage extends BasePage {
     private final WebDriver webDriver;
     private final By CREATE_GROUP_LOCATOR = By.className("create-group");
 
-    GroupsPage(WebDriver webDriver) {
+    GroupsPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         check();
     }
-
 
     public SelectGroupsCard getSelectGroupCard() {
         webDriver.findElement(CREATE_GROUP_LOCATOR).click();
@@ -24,6 +23,6 @@ public class GroupsPage extends BasePage {
 
     @Override
     protected void check() {
-        Assert.assertTrue(webDriver.findElements(By.xpath(".//input[@data-l='t,sign_in']")).isEmpty());
+        Assert.assertTrue(webDriver.findElements(LoginPage.SUBMIT_LOCATOR).isEmpty());
     }
 }

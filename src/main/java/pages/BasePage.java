@@ -1,13 +1,12 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public abstract class BasePage {
 
-    private WebDriver webDriver;
+    protected final WebDriver webDriver;
 
-    BasePage(WebDriver webDriver) {
+    BasePage(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 

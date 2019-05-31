@@ -8,12 +8,12 @@ public class SelectGroupPageTypeCard {
     private final WebElement webElement;
     private final WebDriver webDriver;
 
-    public SelectGroupPageTypeCard(WebElement webElement, WebDriver webDriver){
+    public SelectGroupPageTypeCard(final WebElement webElement, final WebDriver webDriver){
         this.webElement = webElement;
         this.webDriver = webDriver;
     }
 
-    public ModalNewHolderCard clickToSelectGroupPageType(){
+    public ModalNewHolderCard getSelectGroupPageType(){
         webElement.click();
         return new ModalNewHolderCard(webDriver);
     }

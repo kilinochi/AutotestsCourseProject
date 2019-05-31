@@ -12,29 +12,25 @@ public class GroupPage extends BasePage {
     private static final By SETTINGS_SELECTOR = By.xpath("//*[ @class ='u-menu_li expand-action-item']");
     private static final By DELETE_GROUP_SELECTOR = By.xpath("//*[@class ='u-menu_li __divided __custom']");
     private static final By DELETE_BUTTON_SELECTOR = By.xpath("//*[ @class ='u-menu_li expand-action-item']");
+    public static final By RESTRICTION_LOCATOR = By.xpath("//*[@class ='stub-empty __18plus']");
 
     private final String groupName;
     private final WebDriver webDriver;
-    private final String idGroup;
 
-    public GroupPage(WebDriver webDriver) {
+    public GroupPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
-        idGroup = webDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
         groupName = webDriver.findElement(GROUP_NAME_SELECTOR).getAttribute("innerHTML");
     }
 
-    public String getIdGroup() {
-        return idGroup;
+    public String getGroupName() {
+        return groupName;
     }
 
     public void deleteGroup() {
-        final WebElement settingsUl = webDriver.findElement(SETTINGS_SELECTOR);
-        settingsUl.click();
-        final WebElement deleteElement = webDriver.findElement(DELETE_GROUP_SELECTOR);
-        deleteElement.click();
-        final WebElement deleteButtonWebElement = webDriver.findElement(DELETE_BUTTON_SELECTOR);
-        deleteButtonWebElement.click();
+        webDriver.findElement(SETTINGS_SELECTOR).click();
+        webDriver.findElement(DELETE_GROUP_SELECTOR).click();
+        webDriver.findElement(DELETE_BUTTON_SELECTOR).click();
     }
 
     @Override

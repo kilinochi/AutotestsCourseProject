@@ -7,9 +7,10 @@ import org.openqa.selenium.WebDriver;
 public class UserPage extends BasePage{
 
     private WebDriver webDriver;
+    private static final By TOOLBAR_LOCATOR = By.className("toolbar_c");
     private static final By GROUPS_LOCATOR = By.xpath(".//*[@class='navigation']/*[@class='nav-side __navigation']/*[@data-l='t,userAltGroup']");
 
-    UserPage(WebDriver webDriver) {
+    UserPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         check();
@@ -22,6 +23,6 @@ public class UserPage extends BasePage{
 
     @Override
     protected void check() {
-        Assert.assertTrue(webDriver.findElement(By.className("toolbar_c")).isDisplayed());
+        Assert.assertTrue(webDriver.findElement(TOOLBAR_LOCATOR).isDisplayed());
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class PageWrapper {
     public static List<SelectGroupPageTypeCard> getGroupPage(final List<WebElement> webElements, final WebDriver webDriver) {
         return new ArrayList<SelectGroupPageTypeCard>(){{
-            for (WebElement webElement: webElements) {
+            for (final WebElement webElement: webElements) {
                 add(new SelectGroupPageTypeCard(webElement, webDriver));
             }
         }};
