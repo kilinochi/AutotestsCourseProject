@@ -1,14 +1,12 @@
 package cards;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import pages.GroupPage;
-import model.Element;
+import selenium_helpers.Element;
 
-public class ModalNewHolderCard {
+public class ModalDialogAlert {
 
     private static final By NAME_GROUP_LOCATOR = By.name("st.layer.name");
     private static final By DESCRIPTION_LOCATOR = By.id("field_description");
@@ -20,27 +18,27 @@ public class ModalNewHolderCard {
 
     private final WebDriver webDriver;
 
-    ModalNewHolderCard(WebDriver webDriver) {
+    ModalDialogAlert(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public void inputName(final String groupName) {
-        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR),groupName);
+        Element.sendKeys(webDriver, NAME_GROUP_LOCATOR, groupName);
     }
 
     public void inputDescription(final String description) {
-        Element.sendKeys(webDriver.findElement(NAME_GROUP_LOCATOR), description);
+        Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
     }
 
     public void selectCategory() {
-        Element.click(webDriver.findElement(NAME_GROUP_LOCATOR));
+        Element.click(webDriver, CATEGORY_MENU_AUTO);
     }
     public void selectRestriction() {
-        Element.click(webDriver.findElement(AGE_18_SELECTOR));
+        Element.click(webDriver, AGE_18_SELECTOR);
     }
 
     public GroupPage getGroupPage() {
-        Element.click(webDriver.findElement(CREATE_GROUP_BUTTON));
+        Element.click(webDriver, CREATE_GROUP_BUTTON);
         return new GroupPage(webDriver);
     }
 }
