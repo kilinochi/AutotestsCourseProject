@@ -1,8 +1,8 @@
 package pages;
 
 import cards.SelectGroupsCard;
-import model.Element;
-import org.junit.Assert;
+import selenium_helpers.Check;
+import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,12 +18,12 @@ public class GroupsPage extends BasePage {
     }
 
     public SelectGroupsCard getSelectGroupCard() {
-        Element.click(webDriver.findElement(CREATE_GROUP_LOCATOR));
+        Element.click(webDriver, CREATE_GROUP_LOCATOR);
         return new SelectGroupsCard(webDriver);
     }
 
     @Override
     protected void check() {
-        Assert.assertTrue(webDriver.findElements(LoginPage.SUBMIT_LOCATOR).isEmpty());
+        Check.checkElementMissing(webDriver, LoginPage.SUBMIT_LOCATOR);
     }
 }

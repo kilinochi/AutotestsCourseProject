@@ -11,7 +11,6 @@ public class SelectGroupsCard {
     private final WebDriver webDriver;
     private static final By GROUPS_SELECT_LOCATOR = By.className("create-group-dialog_i");
 
-
     public SelectGroupsCard(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }

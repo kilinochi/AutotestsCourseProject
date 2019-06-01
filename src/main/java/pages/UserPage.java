@@ -1,7 +1,7 @@
 package pages;
 
-import model.Element;
-import org.junit.Assert;
+import selenium_helpers.Check;
+import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,12 +18,12 @@ public class UserPage extends BasePage{
     }
 
     public GroupsPage getGroupsPage(){
-        Element.click(webDriver.findElement(GROUPS_LOCATOR));
+        Element.click(webDriver,GROUPS_LOCATOR);
         return new GroupsPage(webDriver);
     }
 
     @Override
     protected void check() {
-        Assert.assertTrue(webDriver.findElement(TOOLBAR_LOCATOR).isDisplayed());
+        Check.checkElementVisible(webDriver, TOOLBAR_LOCATOR);
     }
 }

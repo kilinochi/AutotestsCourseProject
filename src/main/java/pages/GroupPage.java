@@ -1,11 +1,11 @@
 package pages;
 
 import config.AppConfig;
-import model.Element;
+import selenium_helpers.Check;
+import selenium_helpers.Element;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class GroupPage extends BasePage {
 
@@ -21,7 +21,7 @@ public class GroupPage extends BasePage {
     public GroupPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
-        groupName = webDriver.findElement(GROUP_NAME_SELECTOR).getAttribute("innerHTML");
+        groupName = Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML");
         check();
     }
 
@@ -30,13 +30,13 @@ public class GroupPage extends BasePage {
     }
 
     public void deleteGroup() {
-        Element.click(webDriver.findElement(SETTINGS_SELECTOR));
-        Element.click(webDriver.findElement(DELETE_GROUP_SELECTOR));
-        Element.click(webDriver.findElement(DELETE_BUTTON_SELECTOR));
+        Element.click(webDriver, SETTINGS_SELECTOR);
+        Element.click(webDriver, DELETE_GROUP_SELECTOR);
+        Element.click(webDriver, DELETE_BUTTON_SELECTOR);
     }
 
     @Override
     protected void check() {
-        Assert.assertEquals(AppConfig.groupPageName, groupName);
+        Check.checkEquals(AppConfig.groupPageName, groupName);
     }
 }

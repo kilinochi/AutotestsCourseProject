@@ -1,16 +1,14 @@
-import cards.ModalNewHolderCard;
+import cards.ModalDialogAlert;
 import cards.SelectGroupPageTypeCard;
 import cards.SelectGroupsCard;
 import config.AppConfig;
+import selenium_helpers.Check;
 import model.User;
+
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pages.GroupPage;
 import pages.GroupsPage;
@@ -34,23 +32,23 @@ public class CreateGroupTest extends BaseTest{
     }
 
     @Test
-    public void createAndCheckGroup() {
+    public void createAndCheckRestrictionGroup() {
         final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
         final UserPage creatorUserPage = loginPageCreator.get(creatorGroupUser);
         final GroupsPage groupsPage = creatorUserPage.getGroupsPage();
         final SelectGroupsCard selectCreatorGroupsCard = groupsPage.getSelectGroupCard();
         final SelectGroupPageTypeCard selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
-        final ModalNewHolderCard creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getSelectGroupPageType();
+        final ModalDialogAlert
+                creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getSelectGroupPageType();
         creatorModalNewHolderCard.inputName(AppConfig.groupPageName);
         creatorModalNewHolderCard.inputDescription("This is a very SecretGroup!!");
         creatorModalNewHolderCard.selectCategory();
         creatorModalNewHolderCard.selectRestriction();
         creatorModalNewHolderCard.getGroupPage();
-        new WebDriverWait(creatorWebDriver, 10).until(ExpectedConditions.);
-        String groupId = creatorWebDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
+        final String groupId = creatorWebDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
         new LoginPage(usrWebDriver).get(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);
-        Assert.assertTrue(usrWebDriver.findElement(GroupPage.RESTRICTION_LOCATOR).isDisplayed());
+        Check.checkElementVisible(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
     }
 
     @After

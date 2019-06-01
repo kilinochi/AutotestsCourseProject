@@ -1,8 +1,9 @@
 package pages;
 
-import model.Element;
+import selenium_helpers.Check;
+import selenium_helpers.Element;
 import model.User;
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -20,14 +21,14 @@ public class LoginPage extends BasePage{
     }
 
     public UserPage get(final User user) {
-        Element.sendKeys(webDriver.findElement(LOGIN_LOCATOR),user.getLogin());
-        Element.sendKeys(webDriver.findElement(PASSWORD_LOCATOR),user.getPassword());
-        Element.click(driver.findElement(SUBMIT_LOCATOR));
+        Element.sendKeys(webDriver, LOGIN_LOCATOR, user.getLogin());
+        Element.sendKeys(webDriver, PASSWORD_LOCATOR, user.getPassword());
+        Element.click(driver,SUBMIT_LOCATOR);
         return new UserPage(driver);
     }
 
     @Override
     protected void check() {
-        Assert.assertTrue(driver.findElement(SUBMIT_LOCATOR).isDisplayed());
+        Check.checkElementVisible(driver, SUBMIT_LOCATOR);
     }
 }
