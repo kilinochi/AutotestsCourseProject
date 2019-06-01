@@ -1,5 +1,6 @@
 package pages;
 
+import net.sourceforge.jwebunit.exception.ElementNotFoundException;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import model.User;
@@ -20,7 +21,7 @@ public class LoginPage extends BasePage{
         check();
     }
 
-    public UserPage get(final User user) {
+    public UserPage clickToUserPage(final User user) {
         Element.sendKeys(webDriver, LOGIN_LOCATOR, user.getLogin());
         Element.sendKeys(webDriver, PASSWORD_LOCATOR, user.getPassword());
         Element.click(driver,SUBMIT_LOCATOR);

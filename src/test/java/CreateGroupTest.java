@@ -1,6 +1,6 @@
-import cards.ModalDialogAlert;
-import cards.SelectGroupPageTypeCard;
-import cards.SelectGroupsCard;
+import dialog_alerts.ModalDialogAlert;
+import dialog_alerts.SelectGroupPageTypeDialogAlert;
+import dialog_alerts.SelectGroupsDialogAlert;
 import config.AppConfig;
 import selenium_helpers.Check;
 import model.User;
@@ -34,19 +34,19 @@ public class CreateGroupTest extends BaseTest{
     @Test
     public void createAndCheckRestrictionGroup() {
         final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
-        final UserPage creatorUserPage = loginPageCreator.get(creatorGroupUser);
-        final GroupsPage groupsPage = creatorUserPage.getGroupsPage();
-        final SelectGroupsCard selectCreatorGroupsCard = groupsPage.getSelectGroupCard();
-        final SelectGroupPageTypeCard selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
+        final UserPage creatorUserPage = loginPageCreator.clickToUserPage(creatorGroupUser);
+        final GroupsPage groupsPage = creatorUserPage.clickToGroupsSelector();
+        final SelectGroupsDialogAlert selectCreatorGroupsCard = groupsPage.getSelectGroupDialogAlert();
+        final SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
         final ModalDialogAlert
-                creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getSelectGroupPageType();
+                creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getModalDialogAlert();
         creatorModalNewHolderCard.inputName(AppConfig.groupPageName);
         creatorModalNewHolderCard.inputDescription("This is a very SecretGroup!!");
         creatorModalNewHolderCard.selectCategory();
         creatorModalNewHolderCard.selectRestriction();
         creatorModalNewHolderCard.getGroupPage();
         final String groupId = creatorWebDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
-        new LoginPage(usrWebDriver).get(usr);
+        new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);
         Check.checkElementVisible(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
     }

@@ -1,5 +1,6 @@
 package pages;
 
+import net.sourceforge.jwebunit.exception.ElementNotFoundException;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -17,7 +18,7 @@ public class UserPage extends BasePage{
         check();
     }
 
-    public GroupsPage getGroupsPage(){
+    public GroupsPage clickToGroupsSelector(){
         Element.click(webDriver,GROUPS_LOCATOR);
         return new GroupsPage(webDriver);
     }

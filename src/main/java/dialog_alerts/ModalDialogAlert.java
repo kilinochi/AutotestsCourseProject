@@ -1,4 +1,4 @@
-package cards;
+package dialog_alerts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

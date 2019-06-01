@@ -1,5 +1,6 @@
 package selenium_helpers;
 
+import net.sourceforge.jwebunit.exception.ElementNotFoundException;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Check {
-    public static void checkElementVisible(final WebDriver webDriver, final By locator) {
+    public static void checkElementVisible(final WebDriver webDriver, final By locator) throws AssertionError {
         Assert.assertTrue(new WebDriverWait(webDriver, 10).until(new ExpectedCondition<Boolean>() {
             @NullableDecl
             public Boolean apply(@NullableDecl WebDriver webDriver) {
@@ -18,10 +19,13 @@ public class Check {
         }));
     }
 
+
+
     public static void checkElementMissing(final WebDriver webDriver, final By locator) {
         Assert.assertTrue(new WebDriverWait(webDriver, 10).until(new ExpectedCondition<Boolean>() {
             @NullableDecl
             public Boolean apply(@NullableDecl WebDriver webDriver) {
+                assert webDriver != null;
                 return webDriver.findElements(locator).isEmpty();
             }
         }));

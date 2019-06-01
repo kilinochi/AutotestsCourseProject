@@ -1,6 +1,7 @@
 package pages;
 
 import config.AppConfig;
+import dialog_alerts.InviteDialogAlert;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.junit.Assert;
@@ -14,6 +15,7 @@ public class GroupPage extends BasePage {
     private static final By DELETE_GROUP_SELECTOR = By.xpath("//*[@class ='u-menu_li __divided __custom']");
     private static final By DELETE_BUTTON_SELECTOR = By.xpath("//*[ @class ='u-menu_li expand-action-item']");
     public static final By RESTRICTION_LOCATOR = By.xpath("//*[@class ='stub-empty __18plus']");
+    private static final By INVITE_TO_GROUP_BUTTON = By.xpath("//*[ @class ='u-menu_li __hl __custom']");
 
     private final String groupName;
     private final WebDriver webDriver;
@@ -27,6 +29,11 @@ public class GroupPage extends BasePage {
 
     public String getGroupName() {
         return groupName;
+    }
+
+    public InviteDialogAlert clickToInviteButton() {
+        Element.click(webDriver, INVITE_TO_GROUP_BUTTON);
+        return new InviteDialogAlert();
     }
 
     public void deleteGroup() {
