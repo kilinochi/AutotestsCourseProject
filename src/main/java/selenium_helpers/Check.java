@@ -10,14 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Check {
-    public static void checkElementVisible(final WebDriver webDriver, final By locator) throws AssertionError {
+    public static WebElement checkElementVisible(final WebDriver webDriver, final By locator) throws AssertionError {
+        final WebElement result = webDriver.findElement(locator);
         Assert.assertTrue(new WebDriverWait(webDriver, 10).until(new ExpectedCondition<Boolean>() {
             @NullableDecl
             public Boolean apply(@NullableDecl WebDriver webDriver) {
                 assert webDriver != null;
-                return webDriver.findElement(locator).isDisplayed();
+                return result.isDisplayed();
             }
         }));
+        return result;
     }
 
     public static void checkElementMissing(final WebDriver webDriver, final By locator) {

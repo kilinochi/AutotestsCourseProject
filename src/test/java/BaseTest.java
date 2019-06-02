@@ -1,4 +1,4 @@
 
-public abstract class BaseTest {
+abstract class BaseTest {
 
 }

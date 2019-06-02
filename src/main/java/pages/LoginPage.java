@@ -11,13 +11,14 @@ public class LoginPage extends BasePage{
 
     private static final By LOGIN_LOCATOR = By.name("st.email");
     private static final By PASSWORD_LOCATOR = By.name("st.password");
-    static final By SUBMIT_LOCATOR = By.xpath(".//input[@data-l='t,sign_in']");
+    private static final By SUBMIT_LOCATOR = By.xpath(".//input[@data-l='t,sign_in']");
+
     private final WebDriver driver;
 
     public LoginPage(final WebDriver driver) {
         super(driver);
         this.driver = driver;
-        check();
+        this.check();
     }
 
     public UserPage clickToUserPage(final User user) {

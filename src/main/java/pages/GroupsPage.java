@@ -16,13 +16,14 @@ public class GroupsPage extends BasePage {
     private static final By CREATE_GROUP_LOCATOR = By.className("create-group");
     private static final By OWNER_SIDEBAR_LOCATOR = By.xpath("//*[@id ='hook_Block_MyGroupsNavBlock']");
     private static final By GROUPS_CARDS_LOCATORS = By.xpath("//*[ @class ='ucard-v __trimmed']");
+    private static final By WIDGET_LOCATOR = By.xpath("//*[@class='wide-profile portlet-ui small-widgets __over-additional-column mainContentDoubleColumn gm-cl-aft']");
 
     private final WebDriver webDriver;
 
     GroupsPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
-        check();
+        this.check();
     }
 
     public SelectGroupsDialogAlert getSelectGroupDialogAlert() {
@@ -38,7 +39,7 @@ public class GroupsPage extends BasePage {
 
     @Override
     protected void check() {
-        Check.checkElementMissing(webDriver, LoginPage.SUBMIT_LOCATOR);
+        Check.checkElementVisible(webDriver, WIDGET_LOCATOR);
     }
 
     public final class OwnerSideBar {

@@ -39,13 +39,13 @@ public class CreateGroupTest extends BaseTest{
         final SelectGroupsDialogAlert selectCreatorGroupsCard = groupsPage.getSelectGroupDialogAlert();
         final SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
         final ModalDialogAlert
-                creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getModalDialogAlert();
-        creatorModalNewHolderCard.inputName(AppConfig.GROUP_PAGE_NAME);
-        creatorModalNewHolderCard.inputDescription("This is a very SecretGroup!!");
-        creatorModalNewHolderCard.selectCategory();
-        creatorModalNewHolderCard.selectRestriction();
-        creatorModalNewHolderCard.getGroupPage();
-        final String groupId = creatorWebDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
+                modalDialogAlert = selectCreatorGroupPageTypeCard.getModalDialogAlert();
+        modalDialogAlert.inputName(AppConfig.GROUP_PAGE_NAME);
+        modalDialogAlert.inputDescription("This is a very SecretGroup!!");
+        modalDialogAlert.selectCategory();
+        modalDialogAlert.selectRestriction();
+        final GroupPage newPage = modalDialogAlert.getGroupPage();
+        final String groupId = newPage.getGroupId();
         new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);
         Check.checkElementVisible(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);

@@ -6,15 +6,20 @@ import org.openqa.selenium.WebDriver;
 
 public class Element {
     public static void click(final WebDriver webDriver, final By locator) {
-        Check.checkElementVisible(webDriver, locator);
-        webDriver.findElement(locator).click();
+            Check
+                .checkElementVisible(webDriver, locator)
+                .click();
     }
+
     public static void sendKeys(final WebDriver webDriver, final By locator, final String description) {
-        Check.checkElementVisible(webDriver, locator);
-        webDriver.findElement(locator).sendKeys(description);
+            Check
+                .checkElementVisible(webDriver, locator)
+                .sendKeys(description);
     }
+
     public static String getAttribute(final WebDriver webDriver, final By locator, final String attribute) {
-        Check.checkElementVisible(webDriver, locator);
-        return webDriver.findElement(locator).getAttribute(attribute);
+        return Check
+                .checkElementVisible(webDriver, locator)
+                .getAttribute(attribute);
     }
 }

@@ -17,7 +17,7 @@ public class UserPage extends BasePage {
     UserPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
-        check();
+        this.check();
     }
 
     public GroupsPage clickToGroupsSelector(){
