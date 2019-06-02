@@ -40,7 +40,7 @@ public class CreateGroupTest extends BaseTest{
         final SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
         final ModalDialogAlert
                 creatorModalNewHolderCard = selectCreatorGroupPageTypeCard.getModalDialogAlert();
-        creatorModalNewHolderCard.inputName(AppConfig.groupPageName);
+        creatorModalNewHolderCard.inputName(AppConfig.GROUP_PAGE_NAME);
         creatorModalNewHolderCard.inputDescription("This is a very SecretGroup!!");
         creatorModalNewHolderCard.selectCategory();
         creatorModalNewHolderCard.selectRestriction();

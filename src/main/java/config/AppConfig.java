@@ -3,11 +3,15 @@ package config;
 import net.bytebuddy.utility.RandomString;
 
 public class AppConfig {
-    public static final String loginCreator = "technopolisBot151";
-    public static final String creatorId = "572241071467";
-    public static final String loginUser = "technopolisBot142";
-    public static final String usrId = "572241069674";
-    public static final String baseUrl = "https://ok.ru/";
-    public static final String groupPageName = RandomString.make(10);
-    public static final String password = "technopolis16";
+    public static final String LOGIN_CREATOR = "technopolisBot151";
+    public static final String CREATOR_ID = "572241071467";
+    public static final String CREATOR_NAME = "technopolisBot15 technopolisBot15";
+
+    public static final String LOGIN_USER = "technopolisBot142";
+    public static final String USER_ID = "572241069674";
+    public static final String USER_USERNAME = "technopolisBot14 technopolisBot14";
+
+    public static final String BASE_URL = "https://ok.ru/";
+    public static final String GROUP_PAGE_NAME = RandomString.make(10);
+    public static final String PASSWORD = "technopolis16";
 }

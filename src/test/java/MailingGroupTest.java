@@ -1,4 +1,5 @@
 import cards.MyGroupCard;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import dialog_alerts.InviteDialogAlert;
@@ -48,15 +49,14 @@ public class MailingGroupTest {
         final LoginPage usrLoginPage = new LoginPage(usrWebDriver);
         final UserPage usrUserPage = usrLoginPage.clickToUserPage(usr);
         final NotificationDialogAlert usrNotifications = usrUserPage.clickToNotificationDialogAlert();
-        final List <NotificationDialogAlert.Notification> notifications = usrNotifications.getNotificationsGroups();
-        final NotificationDialogAlert.Notification target
-                =
-        Iterables.tryFind(notifications, notification -> {
-                assert notification != null;
-                return ownerGroup.getGroupName().equals(notification.getNotificationName());
-            }).orNull();
-        assert target != null;
-        Assert.assertEquals(target.getNotificationName(), ownerGroup.getGroupName());
+        final List <String> usersWhoSendInvites = usrNotifications.getUserNamesWhoSendInvitations();
+        final String userName = Iterables.tryFind(usersWhoSendInvites, new Predicate<String>() {
+            @Override
+            public boolean apply(@NullableDecl String s) {
+                return ownerUserGroup.getUserName().equals(s);
+            }
+        }).or("Not found User!");
+        Assert.assertEquals(ownerUserGroup.getUserName(), userName);
     }
 
     @After

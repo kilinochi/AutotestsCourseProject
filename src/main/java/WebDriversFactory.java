@@ -39,7 +39,7 @@ class WebDriversFactory {
                 throw new IllegalArgumentException();
         }
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        webDriver.get(AppConfig.baseUrl + "/dk?st.cmd=anonymMain&st.layer.cmd=PopLayerClose");
+        webDriver.get(AppConfig.BASE_URL + "/dk?st.cmd=anonymMain&st.layer.cmd=PopLayerClose");
         return webDriver;
     }
 }
