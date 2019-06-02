@@ -1,6 +1,5 @@
 package pages;
 
-import net.sourceforge.jwebunit.exception.ElementNotFoundException;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import model.User;

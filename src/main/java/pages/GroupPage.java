@@ -4,7 +4,6 @@ import config.AppConfig;
 import dialog_alerts.InviteDialogAlert;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -23,8 +22,8 @@ public class GroupPage extends BasePage {
     public GroupPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
-        groupName = Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML");
         check();
+        groupName = Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML");
     }
 
     public String getGroupName() {
@@ -33,7 +32,7 @@ public class GroupPage extends BasePage {
 
     public InviteDialogAlert clickToInviteButton() {
         Element.click(webDriver, INVITE_TO_GROUP_BUTTON);
-        return new InviteDialogAlert();
+        return new InviteDialogAlert(webDriver);
     }
 
     public void deleteGroup() {
@@ -44,6 +43,6 @@ public class GroupPage extends BasePage {
 
     @Override
     protected void check() {
-        Check.checkEquals(AppConfig.groupPageName, groupName);
+        Check.checkElementVisible(webDriver, GROUP_NAME_SELECTOR);
     }
 }
