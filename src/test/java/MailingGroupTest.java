@@ -40,10 +40,10 @@ public class MailingGroupTest {
                 = creatorUserPage.clickToGroupsSelector();
         final GroupsPage.OwnerSideBar ownerSideBar
                 = creatorGroupsPage.getOwnerSideBar();
-        final GroupsPage.MyGroupCard myGroupCard
+        final GroupsPage.MyGroupsCard myGroupsCard
                 = ownerSideBar.clickToMineGroupsSelector().get(1);
         final GroupPage ownerGroup
-                = myGroupCard.clickToGroup();
+                = myGroupsCard.clickToGroup();
         final GroupPage.InviteDialogAlert inviteDialogAlert
                 = ownerGroup.clickToInviteButton();
         inviteDialogAlert.selectAllFriendsForInvite();

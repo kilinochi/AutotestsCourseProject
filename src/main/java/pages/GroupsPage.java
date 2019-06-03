@@ -49,13 +49,13 @@ public final class GroupsPage extends BasePage {
     public final class OwnerSideBar {
         private OwnerSideBar(){}
 
-        public List<MyGroupCard> clickToMineGroupsSelector() {
+        public List<MyGroupsCard> clickToMineGroupsSelector() {
             Element.click(webDriver, MY_GROUPS_LOCATOR);
             final List <WebElement> webElements = Check
                     .checkListElementsNotEmpty(webDriver, GROUPS_CARDS_LOCATORS);
-            return new ArrayList<MyGroupCard>(){{
+            return new ArrayList<MyGroupsCard>(){{
                 for (final WebElement webElement: webElements) {
-                    add(new MyGroupCard(webElement));
+                    add(new MyGroupsCard(webElement));
                 }
             }};
         }
@@ -113,11 +113,11 @@ public final class GroupsPage extends BasePage {
         }
     }
 
-    public final class MyGroupCard {
+    public final class MyGroupsCard {
 
         private final WebElement mainWebElement;
 
-        private MyGroupCard(final WebElement webElement) {
+        private MyGroupsCard(final WebElement webElement) {
             this.mainWebElement = webElement;
         }
 

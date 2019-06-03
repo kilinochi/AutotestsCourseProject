@@ -19,6 +19,13 @@ public final class GroupPage extends BasePage {
     private static final By INVITE_ALL_FRIEND_SELECTOR = By.xpath("//*[ @class ='irc-vis']");
     private static final By INVITE_FRIENDS_BUTTON = By.xpath("//*[ @class ='button-pro form-actions_yes']");
 
+    private static final By MUSICS_LOCATORS = By.xpath("//*[@data-action='track']/div[2]/div[1]/div[1]");
+    private static final By INPUT_PLACEHOLDER_LOCATOR = By.xpath("//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");
+    private static final By ATTACH_MUSIC_BUTTON = By.xpath("//*[@data-module='postingForm/mediaMusicAddButton']");
+    private static final By INPUT_SEARCH_MUSIC_LOCATOR = By.xpath("//*[@data-id='searchInput']");
+    private static final By SEND_MUSIC_BUTTON = By.xpath("//*[@class='modal-new_actions __center']/div[1]/a[1]");
+    private static final By CREATE_POST_BUTTON_LOCATOR = By.xpath("//*[@class='posting_f_ac']/div[2]");
+
     private final String groupName;
     private final String groupId;
     private final WebDriver webDriver;
@@ -78,6 +85,23 @@ public final class GroupPage extends BasePage {
     public final class CreatePostDialogAlert {
         private CreatePostDialogAlert(){}
 
+        public void inputText(final String text) {
+            Element.sendKeys(webDriver, INPUT_PLACEHOLDER_LOCATOR, text);
+        }
 
+        public void searchAndAttachMusic(final String music, int from, int to) {
+            Element.click(webDriver, ATTACH_MUSIC_BUTTON);
+            Element.sendKeys(webDriver, INPUT_SEARCH_MUSIC_LOCATOR, music);
+            Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
+                    .stream()
+                    .skip(from)
+                    .limit(to-from+1)
+                    .forEach(WebElement::click);
+            Element.click(webDriver, SEND_MUSIC_BUTTON);
+        }
+
+        public void clickToCreatePostButton() {
+            Element.click(webDriver, CREATE_POST_BUTTON_LOCATOR);
+        }
     }
 }
