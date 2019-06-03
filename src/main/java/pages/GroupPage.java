@@ -1,13 +1,12 @@
 package pages;
 
-import dialog_alerts.InviteDialogAlert;
 import org.openqa.selenium.WebElement;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class GroupPage extends BasePage {
+public final class GroupPage extends BasePage {
 
     public static final By RESTRICTION_LOCATOR = By.xpath("//*[@class ='stub-empty __18plus']");
 
@@ -17,6 +16,8 @@ public class GroupPage extends BasePage {
     private static final By DELETE_BUTTON_SELECTOR = By.xpath("//*[ @class ='u-menu_li expand-action-item']");
     private static final By INVITE_TO_GROUP_BUTTON = By.xpath("//*[ @class ='u-menu_li __hl __custom']");
     private static final By CREATE_POST_LOCATOR = By.xpath("//*[@class='pf-with-ava __group-main __with-ava']");
+    private static final By INVITE_ALL_FRIEND_SELECTOR = By.xpath("//*[ @class ='irc-vis']");
+    private static final By INVITE_FRIENDS_BUTTON = By.xpath("//*[ @class ='button-pro form-actions_yes']");
 
     private final String groupName;
     private final String groupId;
@@ -24,7 +25,7 @@ public class GroupPage extends BasePage {
 
     private WebElement createPostElem;
 
-    public GroupPage(final WebDriver webDriver) {
+    GroupPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.check();
@@ -42,12 +43,12 @@ public class GroupPage extends BasePage {
 
     public InviteDialogAlert clickToInviteButton() {
         Element.click(webDriver, INVITE_TO_GROUP_BUTTON);
-        return new InviteDialogAlert(webDriver);
+        return new InviteDialogAlert();
     }
 
     public CreatePostDialogAlert clickToCreatePostArea() {
         createPostElem.click();
-        return new CreatePostDialogAlert(webDriver);
+        return new CreatePostDialogAlert();
     }
 
     public void deleteGroup() {
@@ -62,14 +63,20 @@ public class GroupPage extends BasePage {
         createPostElem = Check.checkElementVisible(webDriver, CREATE_POST_LOCATOR);
     }
 
-    public static final class CreatePostDialogAlert {
+    public final class InviteDialogAlert {
+        private InviteDialogAlert() {}
 
-        private final WebDriver webDriver;
-
-        private CreatePostDialogAlert(final WebDriver webDriver){
-            this.webDriver = webDriver;
+        public void selectAllFriendsForInvite(){
+            Element.click(webDriver, INVITE_ALL_FRIEND_SELECTOR);
         }
 
+        public void clickToInviteButton(){
+            Element.click(webDriver, INVITE_FRIENDS_BUTTON);
+        }
+    }
+
+    public final class CreatePostDialogAlert {
+        private CreatePostDialogAlert(){}
 
 
     }

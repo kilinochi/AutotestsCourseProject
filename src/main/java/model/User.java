@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public final class User {
 
     public enum Role {
         CREATOR, USER

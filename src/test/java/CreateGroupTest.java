@@ -1,6 +1,3 @@
-import dialog_alerts.ModalDialogAlert;
-import dialog_alerts.SelectGroupPageTypeDialogAlert;
-import dialog_alerts.SelectGroupsDialogAlert;
 import config.AppConfig;
 import selenium_helpers.Check;
 import model.User;
@@ -36,15 +33,17 @@ public class CreateGroupTest extends BaseTest{
         final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
         final UserPage creatorUserPage = loginPageCreator.clickToUserPage(creatorGroupUser);
         final GroupsPage groupsPage = creatorUserPage.clickToGroupsSelector();
-        final SelectGroupsDialogAlert selectCreatorGroupsCard = groupsPage.getSelectGroupDialogAlert();
-        final SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard = selectCreatorGroupsCard.getGroupPageList().get(0);
-        final ModalDialogAlert
-                modalDialogAlert = selectCreatorGroupPageTypeCard.getModalDialogAlert();
+        final GroupsPage.SelectGroupsDialogAlert selectCreatorGroupsCard
+                = groupsPage.clickToSelectGroupDialogAlert();
+        final GroupsPage.SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard
+                = selectCreatorGroupsCard.getGroupPageList().get(0);
+        final GroupsPage.ModalDialogAlert modalDialogAlert
+                = selectCreatorGroupPageTypeCard.clickToModalDialogAlert();
         modalDialogAlert.inputName(AppConfig.GROUP_PAGE_NAME);
         modalDialogAlert.inputDescription("This is a very SecretGroup!!");
         modalDialogAlert.selectCategory();
         modalDialogAlert.selectRestriction();
-        final GroupPage newPage = modalDialogAlert.getGroupPage();
+        final GroupPage newPage = modalDialogAlert.createGroupPage();
         final String groupId = newPage.getGroupId();
         new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);

@@ -1,8 +1,5 @@
-import cards.MyGroupCard;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import dialog_alerts.InviteDialogAlert;
-import dialog_alerts.NotificationDialogAlert;
 import model.User;
 
 import java.util.List;
@@ -37,17 +34,23 @@ public class MailingGroupTest {
     @Test
     public void mailingTest() {
         final LoginPage loginPageCreator = new LoginPage(ownerWebDriver);
-        final UserPage creatorUserPage = loginPageCreator.clickToUserPage(ownerUserGroup);
-        final GroupsPage creatorGroupsPage = creatorUserPage.clickToGroupsSelector();
-        final GroupsPage.OwnerSideBar ownerSideBar = creatorGroupsPage.getOwnerSideBar();
-        final MyGroupCard myGroupCard = ownerSideBar.clickToMineGroupsSelector().get(1);
-        final GroupPage ownerGroup = myGroupCard.clickToGroup();
-        final InviteDialogAlert inviteDialogAlert = ownerGroup.clickToInviteButton();
+        final UserPage creatorUserPage
+                = loginPageCreator.clickToUserPage(ownerUserGroup);
+        final GroupsPage creatorGroupsPage
+                = creatorUserPage.clickToGroupsSelector();
+        final GroupsPage.OwnerSideBar ownerSideBar
+                = creatorGroupsPage.getOwnerSideBar();
+        final GroupsPage.MyGroupCard myGroupCard
+                = ownerSideBar.clickToMineGroupsSelector().get(1);
+        final GroupPage ownerGroup
+                = myGroupCard.clickToGroup();
+        final GroupPage.InviteDialogAlert inviteDialogAlert
+                = ownerGroup.clickToInviteButton();
         inviteDialogAlert.selectAllFriendsForInvite();
         inviteDialogAlert.clickToInviteButton();
         final LoginPage usrLoginPage = new LoginPage(usrWebDriver);
         final UserPage usrUserPage = usrLoginPage.clickToUserPage(usr);
-        final NotificationDialogAlert usrNotifications = usrUserPage.clickToNotificationDialogAlert();
+        final UserPage.NotificationDialogAlert usrNotifications = usrUserPage.clickToNotificationDialogAlert();
         final List <String> usersWhoSendInvites = usrNotifications.getUserNamesWhoSendInvitations();
         final String userName = Iterables.tryFind(usersWhoSendInvites, new Predicate<String>() {
             @Override

@@ -1,4 +1,4 @@
 package pages;
 
-public class GroupsSettingsPage {
+public final class GroupsSettingsPage {
 }
