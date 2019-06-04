@@ -1,6 +1,8 @@
 package selenium_helpers;
 
 import java.util.List;
+import java.util.function.Predicate;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -28,6 +30,12 @@ public class Check {
                 .elementToBeClickable(webElement));
         return webElement;
     }
+
+    public static boolean checkElementIsInvisible(final WebDriver webDriver, final By locator) {
+       return new WebDriverWait(webDriver, 15).until(ExpectedConditions
+               .invisibilityOf(webDriver.findElement(locator)));
+    }
+
     public static List <WebElement> checkListElementsNotEmpty(final WebDriver webDriver, final By locator) {
         final List<WebElement> result = webDriver.findElements(locator);
         Assert.assertTrue(new WebDriverWait(webDriver, 10).until(new ExpectedCondition<Boolean>(){

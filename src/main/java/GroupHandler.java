@@ -2,15 +2,16 @@
 import pages.GroupPage;
 import pages.GroupsPage;
 import selenium_helpers.GroupsSubcategory;
+import java.util.List;
 
-final class GroupCreator {
+final class GroupHandler {
     private final String description;
     private final String groupName;
     private final boolean restriction;
     private final GroupsSubcategory groupsSubcategory;
     private final GroupsPage groupsPage;
 
-    private GroupCreator(Builder builder) {
+    private GroupHandler(Builder builder) {
         this.groupsPage = builder.groupsPage;
         this.description = builder.description;
         this.groupName = builder.groupName;
@@ -30,6 +31,19 @@ final class GroupCreator {
         modalDialogAlert.selectSubcategory(groupsSubcategory);
         modalDialogAlert.selectRestriction(restriction);
         return modalDialogAlert.clickToCreateGroupButton();
+    }
+
+    public GroupsPage deleteAllGroups() {
+        final GroupsPage.OwnerSideBar ownerSideBar
+                = groupsPage.getOwnerSideBar();
+        while (ownerSideBar.isVisible()) {
+            ownerSideBar
+                    .clickToMineGroupsSelector()
+                    .get(0)
+                    .clickToGroup()
+                    .deleteGroup();
+        }
+        return groupsPage;
     }
 
     static final class Builder {
@@ -64,8 +78,8 @@ final class GroupCreator {
             return this;
         }
 
-        GroupCreator build() {
-            return new GroupCreator(this);
+        GroupHandler build() {
+            return new GroupHandler(this);
         }
     }
 }

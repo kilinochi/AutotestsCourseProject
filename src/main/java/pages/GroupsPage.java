@@ -60,6 +60,10 @@ public final class GroupsPage extends BasePage {
                 }
             }};
         }
+
+        public boolean isVisible() {
+            return !Check.checkElementIsInvisible(webDriver, OWNER_SIDEBAR_LOCATOR);
+        }
     }
 
     public final class SelectGroupsDialogAlert {
@@ -93,20 +97,26 @@ public final class GroupsPage extends BasePage {
         private ModalDialogAlert() {}
 
         public void inputName(final String groupName) {
-            Element.sendKeys(webDriver, NAME_GROUP_LOCATOR, groupName);
+            if(groupName != null) {
+                Element.sendKeys(webDriver, NAME_GROUP_LOCATOR, groupName);
+            }
         }
 
         public void inputDescription(final String description) {
-            Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
+            if(description != null) {
+                Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
+            }
         }
 
-        public void selectSubcategory(GroupsSubcategory subcategory) {
-            switch (subcategory) {
-                case AUTO:
-                    Element.click(webDriver, CATEGORY_MENU_AUTO);
-                    break;
-                default:
-                    throw new IllegalArgumentException("BAD ARGUMENT!");
+        public void selectSubcategory(final GroupsSubcategory subcategory) {
+            if(subcategory != null) {
+                switch (subcategory) {
+                    case AUTO:
+                        Element.click(webDriver, CATEGORY_MENU_AUTO);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("BAD ARGUMENT!");
+                }
             }
         }
 

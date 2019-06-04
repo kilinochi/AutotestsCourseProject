@@ -33,7 +33,7 @@ public class MailingGroupTest {
                 = loginPageCreator.clickToUserPage(ownerUserGroup);
         final GroupsPage creatorGroupsPage
                 = creatorUserPage.clickToGroupsSelector();
-        new GroupCreator.Builder(creatorGroupsPage)
+        new GroupHandler.Builder(creatorGroupsPage)
                 .inputName("Riksha")
                 .inputDescription("MoreRiksha")
                 .category(GroupsSubcategory.AUTO)
