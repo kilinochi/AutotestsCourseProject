@@ -2,7 +2,6 @@
 import pages.GroupPage;
 import pages.GroupsPage;
 import selenium_helpers.GroupsSubcategory;
-import java.util.List;
 
 final class GroupHandler {
     private final String description;
@@ -33,7 +32,7 @@ final class GroupHandler {
         return modalDialogAlert.clickToCreateGroupButton();
     }
 
-    public GroupsPage deleteAllGroups() {
+    GroupsPage deleteAllGroups() {
         final GroupsPage.OwnerSideBar ownerSideBar
                 = groupsPage.getOwnerSideBar();
         while (ownerSideBar.isVisible()) {

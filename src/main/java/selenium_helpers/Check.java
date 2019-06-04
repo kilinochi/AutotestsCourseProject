@@ -32,8 +32,8 @@ public class Check {
     }
 
     public static boolean checkElementIsInvisible(final WebDriver webDriver, final By locator) {
-       return new WebDriverWait(webDriver, 15).until(ExpectedConditions
-               .invisibilityOf(webDriver.findElement(locator)));
+        final WebElement webElement = webDriver.findElement(locator);
+        return !webElement.isDisplayed();
     }
 
     public static List <WebElement> checkListElementsNotEmpty(final WebDriver webDriver, final By locator) {

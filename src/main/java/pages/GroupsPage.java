@@ -26,7 +26,7 @@ public final class GroupsPage extends BasePage {
 
     private final WebDriver webDriver;
 
-    GroupsPage(final WebDriver webDriver) {
+    public GroupsPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.check();

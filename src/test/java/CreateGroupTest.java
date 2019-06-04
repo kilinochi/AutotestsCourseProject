@@ -48,6 +48,10 @@ public class CreateGroupTest {
 
     @After
     public void afterTest() {
+        creatorWebDriver.navigate().back();
+        new GroupHandler.Builder(new GroupsPage(creatorWebDriver))
+                .build()
+                .deleteAllGroups();
         creatorWebDriver.close();
         usrWebDriver.close();
     }
