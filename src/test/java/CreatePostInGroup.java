@@ -34,7 +34,7 @@ public class CreatePostInGroup {
     }
 
     @After
-    public void endTest(){
+    public void afterTest(){
         webDriver.close();
     }
 }

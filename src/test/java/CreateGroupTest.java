@@ -11,9 +11,9 @@ import pages.GroupPage;
 import pages.GroupsPage;
 import pages.LoginPage;
 import pages.UserPage;
+import selenium_helpers.GroupsSubcategory;
 
-
-public class CreateGroupTest extends BaseTest{
+public class CreateGroupTest {
 
     private User creatorGroupUser;
     private WebDriver creatorWebDriver;
@@ -33,25 +33,21 @@ public class CreateGroupTest extends BaseTest{
         final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
         final UserPage creatorUserPage = loginPageCreator.clickToUserPage(creatorGroupUser);
         final GroupsPage groupsPage = creatorUserPage.clickToGroupsSelector();
-        final GroupsPage.SelectGroupsDialogAlert selectCreatorGroupsCard
-                = groupsPage.clickToSelectGroupDialogAlert();
-        final GroupsPage.SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard
-                = selectCreatorGroupsCard.getGroupPageList().get(0);
-        final GroupsPage.ModalDialogAlert modalDialogAlert
-                = selectCreatorGroupPageTypeCard.clickToModalDialogAlert();
-        modalDialogAlert.inputName(AppConfig.GROUP_PAGE_NAME);
-        modalDialogAlert.inputDescription("This is a very SecretGroup!!");
-        modalDialogAlert.selectCategory();
-        modalDialogAlert.selectRestriction();
-        final GroupPage newPage = modalDialogAlert.createGroupPage();
+        final GroupPage newPage = new GroupCreator.Builder(groupsPage)
+                .inputName(AppConfig.GROUP_PAGE_NAME)
+                .inputDescription("This is a very cool Group!")
+                .category(GroupsSubcategory.AUTO)
+                .isRestriction(true)
+                .build()
+                .create();
         final String groupId = newPage.getGroupId();
         new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);
-        Check.checkElementVisible(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
+        Check.checkElementIsDisplayed(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
     }
 
     @After
-    public void endTest() {
+    public void afterTest() {
         creatorWebDriver.close();
         usrWebDriver.close();
     }

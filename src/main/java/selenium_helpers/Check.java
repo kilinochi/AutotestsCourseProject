@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Check {
-    public static WebElement checkElementVisible(final WebDriver webDriver, final By locator) throws AssertionError {
+    public static WebElement checkElementIsDisplayed(final WebDriver webDriver, final By locator) throws AssertionError {
         final WebElement result = webDriver.findElement(locator);
         Assert.assertTrue(new WebDriverWait(webDriver, 15).until(new ExpectedCondition<Boolean>() {
             @NullableDecl
@@ -23,9 +23,9 @@ public class Check {
         return result;
     }
 
-    static WebElement elementToBeClickable(final WebDriver webDriver, final WebElement webElement) {
+    static WebElement checkElementToBeClickAble(final WebDriver webDriver, final WebElement webElement) {
         new WebDriverWait(webDriver, 15).until(ExpectedConditions
-                .visibilityOf(webElement));
+                .elementToBeClickable(webElement));
         return webElement;
     }
     public static List <WebElement> checkListElementsNotEmpty(final WebDriver webDriver, final By locator) {

@@ -8,6 +8,7 @@ import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import selenium_helpers.GroupsSubcategory;
 
 public final class GroupsPage extends BasePage {
 
@@ -37,13 +38,13 @@ public final class GroupsPage extends BasePage {
     }
 
     public OwnerSideBar getOwnerSideBar() {
-        Check.checkElementVisible(webDriver, OWNER_SIDEBAR_LOCATOR);
+        Check.checkElementIsDisplayed(webDriver, OWNER_SIDEBAR_LOCATOR);
         return new OwnerSideBar();
     }
 
     @Override
     protected void check() {
-        Check.checkElementVisible(webDriver, WIDGET_LOCATOR);
+        Check.checkElementIsDisplayed(webDriver, WIDGET_LOCATOR);
     }
 
     public final class OwnerSideBar {
@@ -99,15 +100,23 @@ public final class GroupsPage extends BasePage {
             Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
         }
 
-        public void selectCategory() {
-            Element.click(webDriver, CATEGORY_MENU_AUTO);
+        public void selectSubcategory(GroupsSubcategory subcategory) {
+            switch (subcategory) {
+                case AUTO:
+                    Element.click(webDriver, CATEGORY_MENU_AUTO);
+                    break;
+                default:
+                    throw new IllegalArgumentException("BAD ARGUMENT!");
+            }
         }
 
-        public void selectRestriction() {
-            Element.click(webDriver, AGE_18_SELECTOR);
+        public void selectRestriction(boolean isRestriction) {
+            if(isRestriction) {
+                Element.click(webDriver, AGE_18_SELECTOR);
+            }
         }
 
-        public GroupPage createGroupPage() {
+        public GroupPage clickToCreateGroupButton() {
             Element.click(webDriver, CREATE_GROUP_BUTTON);
             return new GroupPage(webDriver);
         }

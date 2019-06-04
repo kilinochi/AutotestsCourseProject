@@ -36,7 +36,7 @@ public final class UserPage extends BasePage {
 
     @Override
     protected void check() {
-        Check.checkElementVisible(webDriver, TOOLBAR_LOCATOR);
+        Check.checkElementIsDisplayed(webDriver, TOOLBAR_LOCATOR);
     }
 
     public final class NotificationDialogAlert {

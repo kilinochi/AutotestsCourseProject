@@ -15,6 +15,7 @@ import pages.GroupPage;
 import pages.GroupsPage;
 import pages.LoginPage;
 import pages.UserPage;
+import selenium_helpers.GroupsSubcategory;
 
 public class MailingGroupTest {
 
@@ -26,6 +27,20 @@ public class MailingGroupTest {
     @Before
     public void setUp(){
         ownerUserGroup = UserFactory.getUser(User.Role.CREATOR);
+        ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
+        final LoginPage loginPageCreator = new LoginPage(ownerWebDriver);
+        final UserPage creatorUserPage
+                = loginPageCreator.clickToUserPage(ownerUserGroup);
+        final GroupsPage creatorGroupsPage
+                = creatorUserPage.clickToGroupsSelector();
+        new GroupCreator.Builder(creatorGroupsPage)
+                .inputName("Riksha")
+                .inputDescription("MoreRiksha")
+                .category(GroupsSubcategory.AUTO)
+                .isRestriction(false)
+                .build()
+                .create();
+        ownerWebDriver.close();
         ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         usr = UserFactory.getUser(User.Role.USER);
         usrWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
@@ -41,7 +56,7 @@ public class MailingGroupTest {
         final GroupsPage.OwnerSideBar ownerSideBar
                 = creatorGroupsPage.getOwnerSideBar();
         final GroupsPage.MyGroupsCard myGroupsCard
-                = ownerSideBar.clickToMineGroupsSelector().get(1);
+                = ownerSideBar.clickToMineGroupsSelector().get(0);
         final GroupPage ownerGroup
                 = myGroupsCard.clickToGroup();
         final GroupPage.InviteDialogAlert inviteDialogAlert
@@ -62,7 +77,7 @@ public class MailingGroupTest {
     }
 
     @After
-    public void endTest(){
+    public void afterTest(){
         ownerWebDriver.close();
         usrWebDriver.close();
     }

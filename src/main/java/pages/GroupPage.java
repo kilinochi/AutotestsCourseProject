@@ -66,8 +66,8 @@ public final class GroupPage extends BasePage {
 
     @Override
     protected void check() {
-        Check.checkElementVisible(webDriver, GROUP_NAME_SELECTOR);
-        createPostElem = Check.checkElementVisible(webDriver, CREATE_POST_LOCATOR);
+        Check.checkElementIsDisplayed(webDriver, GROUP_NAME_SELECTOR);
+        createPostElem = Check.checkElementIsDisplayed(webDriver, CREATE_POST_LOCATOR);
     }
 
     public final class InviteDialogAlert {

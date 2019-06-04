@@ -8,21 +8,21 @@ import org.openqa.selenium.WebElement;
 public class Element {
     public static void click(final WebDriver webDriver, final By locator) {
             final WebElement webElement = Check
-                    .checkElementVisible(webDriver, locator);
-            Check.elementToBeClickable(webDriver, webElement)
+                    .checkElementIsDisplayed(webDriver, locator);
+            Check.checkElementToBeClickAble(webDriver, webElement)
                     .click();
     }
 
     public static void sendKeys(final WebDriver webDriver, final By locator, final String description) {
             final WebElement webElement = Check
-                    .checkElementVisible(webDriver, locator);
-            Check.elementToBeClickable(webDriver, webElement)
+                    .checkElementIsDisplayed(webDriver, locator);
+            Check.checkElementToBeClickAble(webDriver, webElement)
                     .sendKeys(description);
     }
 
     public static String getAttribute(final WebDriver webDriver, final By locator, final String attribute) {
         return Check
-                .checkElementVisible(webDriver, locator)
+                .checkElementIsDisplayed(webDriver, locator)
                 .getAttribute(attribute);
     }
 }

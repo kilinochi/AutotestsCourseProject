@@ -30,6 +30,6 @@ public final class LoginPage extends BasePage{
 
     @Override
     protected void check() {
-        Check.checkElementVisible(driver, SUBMIT_LOCATOR);
+        Check.checkElementIsDisplayed(driver, SUBMIT_LOCATOR);
     }
 }
