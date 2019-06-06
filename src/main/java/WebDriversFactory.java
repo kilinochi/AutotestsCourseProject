@@ -10,7 +10,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.concurrent.TimeUnit;
 
-class WebDriversFactory {
+final class WebDriversFactory {
 
     private WebDriversFactory(){}
 

@@ -29,30 +29,25 @@ public class MailingGroupTest {
         ownerUserGroup = UserFactory.getUser(User.Role.CREATOR);
         ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         final LoginPage loginPageCreator = new LoginPage(ownerWebDriver);
-        final UserPage creatorUserPage
+        final UserPage ownerUserPage
                 = loginPageCreator.clickToUserPage(ownerUserGroup);
         final GroupsPage creatorGroupsPage
-                = creatorUserPage.clickToGroupsSelector();
-        new GroupHandler.Builder(creatorGroupsPage)
+                = ownerUserPage.clickToGroupsSelector();
+        new CreatorPageHandler.Builder(creatorGroupsPage)
                 .inputName("Riksha")
                 .inputDescription("MoreRiksha")
                 .category(GroupsSubcategory.AUTO)
                 .isRestriction(false)
                 .build()
                 .create();
-        ownerWebDriver.close();
-        ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         usr = UserFactory.getUser(User.Role.USER);
         usrWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
     }
 
     @Test
     public void mailingTest() {
-        final LoginPage loginPageCreator = new LoginPage(ownerWebDriver);
-        final UserPage creatorUserPage
-                = loginPageCreator.clickToUserPage(ownerUserGroup);
-        final GroupsPage creatorGroupsPage
-                = creatorUserPage.clickToGroupsSelector();
+        ownerWebDriver.get("https://ok.ru/groups");
+        final GroupsPage creatorGroupsPage = new GroupsPage(ownerWebDriver);
         final GroupsPage.OwnerSideBar ownerSideBar
                 = creatorGroupsPage.getOwnerSideBar();
         final GroupsPage.MyGroupsCard myGroupsCard
@@ -78,6 +73,10 @@ public class MailingGroupTest {
 
     @After
     public void afterTest(){
+        ownerWebDriver.get("https://ok.ru/groups");
+        new CreatorPageHandler.Builder(new GroupsPage(ownerWebDriver))
+                .build()
+                .deleteAllGroups();
         ownerWebDriver.close();
         usrWebDriver.close();
     }

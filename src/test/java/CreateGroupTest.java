@@ -33,7 +33,7 @@ public class CreateGroupTest {
         final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
         final UserPage creatorUserPage = loginPageCreator.clickToUserPage(creatorGroupUser);
         final GroupsPage groupsPage = creatorUserPage.clickToGroupsSelector();
-        final GroupPage newPage = new GroupHandler.Builder(groupsPage)
+        final GroupPage newPage = new CreatorPageHandler.Builder(groupsPage)
                 .inputName(AppConfig.GROUP_PAGE_NAME)
                 .inputDescription("This is a very cool Group!")
                 .category(GroupsSubcategory.AUTO)
@@ -48,8 +48,8 @@ public class CreateGroupTest {
 
     @After
     public void afterTest() {
-        creatorWebDriver.navigate().back();
-        new GroupHandler.Builder(new GroupsPage(creatorWebDriver))
+        creatorWebDriver.get("https://ok.ru/groups");
+        new CreatorPageHandler.Builder(new GroupsPage(creatorWebDriver))
                 .build()
                 .deleteAllGroups();
         creatorWebDriver.close();

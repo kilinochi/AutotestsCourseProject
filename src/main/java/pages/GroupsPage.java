@@ -15,7 +15,8 @@ public final class GroupsPage extends BasePage {
     private static final By CREATE_GROUP_LOCATOR = By.className("create-group");
     private static final By OWNER_SIDEBAR_LOCATOR = By.xpath("//*[@id ='hook_Block_MyGroupsNavBlock']");
     private static final By GROUPS_CARDS_LOCATORS = By.xpath("//*[ @class ='ucard-v __trimmed']");
-    private static final By WIDGET_LOCATOR = By.xpath("//*[@class='wide-profile portlet-ui small-widgets __over-additional-column mainContentDoubleColumn gm-cl-aft']");
+    private static final By SEARCH_GROUPS_PLACEHOLDER =
+            By.xpath("//*[@id ='hook_Block_UserGroupSearch2QueryBlock']");
     private static final By GROUPS_SELECT_LOCATOR = By.className("create-group-dialog_i");
     private static final By NAME_GROUP_LOCATOR = By.name("st.layer.name");
     private static final By DESCRIPTION_LOCATOR = By.id("field_description");
@@ -44,7 +45,7 @@ public final class GroupsPage extends BasePage {
 
     @Override
     protected void check() {
-        Check.checkElementIsDisplayed(webDriver, WIDGET_LOCATOR);
+        Check.checkElementIsDisplayed(webDriver, SEARCH_GROUPS_PLACEHOLDER);
     }
 
     public final class OwnerSideBar {

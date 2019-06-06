@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Element {
+public final class Element {
     public static void click(final WebDriver webDriver, final By locator) {
             final WebElement webElement = Check
                     .checkElementIsDisplayed(webDriver, locator);

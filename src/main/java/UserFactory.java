@@ -1,7 +1,7 @@
 import config.AppConfig;
 import model.User;
 
-class UserFactory {
+final class UserFactory {
     private UserFactory(){}
 
     static User getUser(final User.Role role){

@@ -1,7 +1,6 @@
 package selenium_helpers;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.junit.Assert;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Check {
+public final class Check {
     public static WebElement checkElementIsDisplayed(final WebDriver webDriver, final By locator) throws AssertionError {
         final WebElement result = webDriver.findElement(locator);
         Assert.assertTrue(new WebDriverWait(webDriver, 15).until(new ExpectedCondition<Boolean>() {

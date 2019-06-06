@@ -3,14 +3,15 @@ import pages.GroupPage;
 import pages.GroupsPage;
 import selenium_helpers.GroupsSubcategory;
 
-final class GroupHandler {
+final class CreatorPageHandler {
+
     private final String description;
     private final String groupName;
     private final boolean restriction;
     private final GroupsSubcategory groupsSubcategory;
     private final GroupsPage groupsPage;
 
-    private GroupHandler(Builder builder) {
+    private CreatorPageHandler(Builder builder) {
         this.groupsPage = builder.groupsPage;
         this.description = builder.description;
         this.groupName = builder.groupName;
@@ -77,8 +78,8 @@ final class GroupHandler {
             return this;
         }
 
-        GroupHandler build() {
-            return new GroupHandler(this);
+        CreatorPageHandler build() {
+            return new CreatorPageHandler(this);
         }
     }
 }

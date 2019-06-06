@@ -5,6 +5,7 @@ import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.List;
 
 public final class GroupPage extends BasePage {
 
@@ -26,18 +27,35 @@ public final class GroupPage extends BasePage {
     private static final By SEND_MUSIC_BUTTON = By.xpath("//*[@class='modal-new_actions __center']/div[1]/a[1]");
     private static final By CREATE_POST_BUTTON_LOCATOR = By.xpath("//*[@class='posting_f_ac']/div[2]");
 
+    private static final By UL_OPTIONS_MENU = By.xpath("//*[@class='u-menu_a toggle-dropdown']");
+
+    private static final By LI_OPTIONS_MENU = By.xpath("//*[@class='u-menu_li  __custom']");
+
+    private static final By POST_LOCATORS = By.xpath("//*[@class='feed-w']");
+
     private final String groupName;
     private final String groupId;
     private final WebDriver webDriver;
 
     private WebElement createPostElem;
 
-    GroupPage(final WebDriver webDriver) {
+    public GroupPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.check();
         groupName = Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML");
         groupId = this.webDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
+    }
+
+    public List <WebElement> getAllPosts() {
+        return webDriver.findElements(POST_LOCATORS);
+    }
+
+    public GroupsSettingsPage clickToGroupSettings(){
+        Element.click(webDriver, UL_OPTIONS_MENU);
+        Check.checkListElementsNotEmpty(webDriver, LI_OPTIONS_MENU)
+                .get(0).click();
+        return new GroupsSettingsPage(webDriver);
     }
 
     public String getGroupId() {
@@ -53,9 +71,9 @@ public final class GroupPage extends BasePage {
         return new InviteDialogAlert();
     }
 
-    public CreatePostDialogAlert clickToCreatePostArea() {
+    public PostDialogAlert clickToCreatePostArea() {
         createPostElem.click();
-        return new CreatePostDialogAlert();
+        return new PostDialogAlert();
     }
 
     public void deleteGroup() {
@@ -82,26 +100,53 @@ public final class GroupPage extends BasePage {
         }
     }
 
-    public final class CreatePostDialogAlert {
-        private CreatePostDialogAlert(){}
+    public final class PostDialogAlert {
+        private PostDialogAlert(){}
 
         public void inputText(final String text) {
-            Element.sendKeys(webDriver, INPUT_PLACEHOLDER_LOCATOR, text);
+            if(text != null) {
+                Element.sendKeys(webDriver, INPUT_PLACEHOLDER_LOCATOR, text);
+            }
         }
 
-        public void searchAndAttachMusic(final String music, int from, int to) {
-            Element.click(webDriver, ATTACH_MUSIC_BUTTON);
-            Element.sendKeys(webDriver, INPUT_SEARCH_MUSIC_LOCATOR, music);
-            Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
-                    .stream()
-                    .skip(from)
-                    .limit(to-from+1)
-                    .forEach(WebElement::click);
-            Element.click(webDriver, SEND_MUSIC_BUTTON);
+        public void attachMusic(int from, int count) {
+            if(from >= 0 && count >= 0) {
+                Element.click(webDriver, ATTACH_MUSIC_BUTTON);
+                Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
+                        .stream()
+                        .skip(from)
+                        .limit(count - from + 1)
+                        .forEach(WebElement::click);
+                Element.click(webDriver, SEND_MUSIC_BUTTON);
+            }
         }
 
-        public void clickToCreatePostButton() {
+        public void searchAndAttachMusic(final String music, int from, int count) {
+            if(music != null && from >= 0 && count >= 0) {
+                Element.click(webDriver, ATTACH_MUSIC_BUTTON);
+                Element.sendKeys(webDriver, INPUT_SEARCH_MUSIC_LOCATOR, music);
+                Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
+                        .stream()
+                        .skip(from)
+                        .limit(count - from + 1)
+                        .forEach(WebElement::click);
+                Element.click(webDriver, SEND_MUSIC_BUTTON);
+            }
+        }
+
+        public GroupTopicsTab clickToCreatePostButton() {
             Element.click(webDriver, CREATE_POST_BUTTON_LOCATOR);
+            return new GroupTopicsTab();
+        }
+    }
+
+    public final class GroupTopicsTab {
+        private GroupTopicsTab() {
+
+        }
+
+        public List <WebElement> getAllPosts() {
+            return webDriver.findElements(By.xpath("//*[@class='groups_post-w __search-enabled']"));
         }
     }
 }

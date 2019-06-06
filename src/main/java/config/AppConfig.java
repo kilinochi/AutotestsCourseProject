@@ -2,7 +2,7 @@ package config;
 
 import net.bytebuddy.utility.RandomString;
 
-public class AppConfig {
+public final class AppConfig {
     public static final String LOGIN_CREATOR = "technopolisBot151";
     public static final String CREATOR_ID = "572241071467";
     public static final String CREATOR_NAME = "technopolisBot15 technopolisBot15";
