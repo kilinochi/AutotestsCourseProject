@@ -1,6 +1,10 @@
 
-import pages.GroupPage;
-import pages.GroupsPage;
+import pages.group_page.GroupPage;
+import pages.groups_page.GroupsPage;
+import pages.groups_page.cards.GroupPageTypeCard;
+import pages.groups_page.dialog_alerts.ModalDialogAlert;
+import pages.groups_page.dialog_alerts.SelectGroupsDialogAlert;
+import pages.groups_page.side_bars.OwnerSideBar;
 import selenium_helpers.GroupsSubcategory;
 
 final class CreatorPageHandler {
@@ -20,21 +24,19 @@ final class CreatorPageHandler {
     }
 
     GroupPage create() {
-        final GroupsPage.SelectGroupsDialogAlert selectCreatorGroupsCard
-                = groupsPage.clickToSelectGroupDialogAlert();
-        final GroupsPage.SelectGroupPageTypeDialogAlert selectCreatorGroupPageTypeCard
-                = selectCreatorGroupsCard.getGroupPageList().get(0);
-        final GroupsPage.ModalDialogAlert modalDialogAlert
-                = selectCreatorGroupPageTypeCard.clickToModalDialogAlert();
-        modalDialogAlert.inputName(groupName);
-        modalDialogAlert.inputDescription(description);
-        modalDialogAlert.selectSubcategory(groupsSubcategory);
-        modalDialogAlert.selectRestriction(restriction);
-        return modalDialogAlert.clickToCreateGroupButton();
+        return groupsPage
+                .clickToSelectGroupDialogAlert()
+                .getGroupPageList().get(0)
+                .clickToModalDialogAlert()
+                .inputName(groupName)
+                .inputDescription(description)
+                .selectSubcategory(groupsSubcategory)
+                .selectRestriction(restriction)
+                .clickToCreateGroupButton();
     }
 
     GroupsPage deleteAllGroups() {
-        final GroupsPage.OwnerSideBar ownerSideBar
+        final OwnerSideBar ownerSideBar
                 = groupsPage.getOwnerSideBar();
         while (ownerSideBar.isVisible()) {
             ownerSideBar

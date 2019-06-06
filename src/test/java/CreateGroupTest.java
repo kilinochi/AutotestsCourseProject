@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import pages.GroupPage;
-import pages.GroupsPage;
-import pages.LoginPage;
-import pages.UserPage;
+import pages.group_page.GroupPage;
+import pages.groups_page.GroupsPage;
+import pages.login_page.LoginPage;
+import pages.user_page.UserPage;
 import selenium_helpers.GroupsSubcategory;
 
 public class CreateGroupTest {

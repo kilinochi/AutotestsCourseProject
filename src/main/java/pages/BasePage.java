@@ -6,7 +6,7 @@ public abstract class BasePage {
 
     protected final WebDriver webDriver;
 
-    BasePage(final WebDriver webDriver) {
+    public BasePage(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 

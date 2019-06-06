@@ -11,10 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import pages.GroupPage;
-import pages.GroupsPage;
-import pages.LoginPage;
-import pages.UserPage;
+import pages.group_page.GroupPage;
+import pages.group_page.dialog_alerts.InviteDialogAlert;
+import pages.groups_page.GroupsPage;
+import pages.groups_page.cards.MyGroupsCard;
+import pages.groups_page.side_bars.OwnerSideBar;
+import pages.login_page.LoginPage;
+import pages.user_page.UserPage;
+import pages.user_page.dialog_alerts.NotificationDialogAlert;
 import selenium_helpers.GroupsSubcategory;
 
 public class MailingGroupTest {
@@ -28,11 +32,10 @@ public class MailingGroupTest {
     public void setUp(){
         ownerUserGroup = UserFactory.getUser(User.Role.CREATOR);
         ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
-        final LoginPage loginPageCreator = new LoginPage(ownerWebDriver);
-        final UserPage ownerUserPage
-                = loginPageCreator.clickToUserPage(ownerUserGroup);
-        final GroupsPage creatorGroupsPage
-                = ownerUserPage.clickToGroupsSelector();
+        final GroupsPage creatorGroupsPage =
+                new LoginPage(ownerWebDriver)
+                .clickToUserPage(ownerUserGroup)
+                .clickToGroupsSelector();
         new CreatorPageHandler.Builder(creatorGroupsPage)
                 .inputName("Riksha")
                 .inputDescription("MoreRiksha")
@@ -47,21 +50,17 @@ public class MailingGroupTest {
     @Test
     public void mailingTest() {
         ownerWebDriver.get("https://ok.ru/groups");
-        final GroupsPage creatorGroupsPage = new GroupsPage(ownerWebDriver);
-        final GroupsPage.OwnerSideBar ownerSideBar
-                = creatorGroupsPage.getOwnerSideBar();
-        final GroupsPage.MyGroupsCard myGroupsCard
-                = ownerSideBar.clickToMineGroupsSelector().get(0);
-        final GroupPage ownerGroup
-                = myGroupsCard.clickToGroup();
-        final GroupPage.InviteDialogAlert inviteDialogAlert
-                = ownerGroup.clickToInviteButton();
-        inviteDialogAlert.selectAllFriendsForInvite();
-        inviteDialogAlert.clickToInviteButton();
-        final LoginPage usrLoginPage = new LoginPage(usrWebDriver);
-        final UserPage usrUserPage = usrLoginPage.clickToUserPage(usr);
-        final UserPage.NotificationDialogAlert usrNotifications = usrUserPage.clickToNotificationDialogAlert();
-        final List <String> usersWhoSendInvites = usrNotifications.getUserNamesWhoSendInvitations();
+        new GroupsPage(ownerWebDriver)
+                .getOwnerSideBar()
+                .clickToMineGroupsSelector().get(0)
+                .clickToGroup()
+                .clickToInviteButton()
+                .selectAllFriendsForInvite()
+                .clickToInviteButton();
+        final List <String> usersWhoSendInvites = new LoginPage(usrWebDriver)
+                .clickToUserPage(usr)
+                .clickToNotificationDialogAlert()
+                .getUserNamesWhoSendInvitations();
         final String userName = Iterables.tryFind(usersWhoSendInvites, new Predicate<String>() {
             @Override
             public boolean apply(@NullableDecl String s) {

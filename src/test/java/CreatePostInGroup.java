@@ -4,11 +4,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pages.GroupPage;
-import pages.GroupsPage;
-import pages.LoginPage;
-import java.util.List;
+import pages.group_page.GroupPage;
+import pages.group_page.posts.GroupPostPage;
+import pages.groups_page.GroupsPage;
+import pages.groups_page.cards.MyGroupsCard;
+import pages.groups_page.side_bars.OwnerSideBar;
+import pages.login_page.LoginPage;
 
 public class CreatePostInGroup {
 
@@ -32,17 +33,17 @@ public class CreatePostInGroup {
     public void createMusicPost() {
         webDriver.get("https://ok.ru/groups");
         final GroupsPage groupsPage = new GroupsPage(webDriver);
-        final GroupsPage.OwnerSideBar userGroups = groupsPage.getOwnerSideBar();
-        final GroupsPage.MyGroupsCard groupsCard = userGroups.clickToMineGroupsSelector().get(0);
+        final OwnerSideBar userGroups = groupsPage.getOwnerSideBar();
+        final MyGroupsCard groupsCard = userGroups.clickToMineGroupsSelector().get(0);
         final GroupPage group = groupsCard.clickToGroup();
         int olderCountPosts = group.getAllPosts().size();
-        GroupPage.GroupTopicsTab groupTopicsTab = new CreatorPostHandler.Builder(group)
+        GroupPostPage groupPostPage = new CreatorPostHandler.Builder(group)
                 .inputText("Rise Against!")
                 .searchAndAttachMusic("Rise Against - Satellite")
                 .fromRange(1,1)
                 .build()
                 .createMusicPost();
-        int nowCountPosts = groupTopicsTab.getAllPosts().size();
+        int nowCountPosts = groupPostPage.getAllPosts().size();
         Assert.assertEquals(olderCountPosts + 1,  nowCountPosts);
     }
 

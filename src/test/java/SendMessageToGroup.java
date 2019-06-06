@@ -3,10 +3,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import pages.GroupPage;
-import pages.GroupsPage;
-import pages.LoginPage;
-import pages.UserPage;
+import pages.group_page.GroupPage;
+import pages.group_page.settings.GroupSettingsPage;
+import pages.group_page.settings.tabs.SettingsTab;
+import pages.groups_page.GroupsPage;
+import pages.login_page.LoginPage;
 
 public class SendMessageToGroup {
 
@@ -26,6 +27,11 @@ public class SendMessageToGroup {
                 .inputDescription("more test")
                 .build()
                 .create()
+                .clickToGroupSettings()
+                .clickToMsgSettingsTab()
+                .selectCategoryWhoCanSendMessage(SettingsTab.Category.EVERYBODY)
+                .clickToSaveButton()
+                .clickToGroupProfile()
                 .getGroupId();
     }
 
@@ -33,8 +39,7 @@ public class SendMessageToGroup {
     public void sendMessageToGroup() {
         final WebDriver usrWebDriver
                 = WebDriversFactory.getDriver(Drivers.ChromeDriver);
-        new LoginPage(usrWebDriver)
-                .clickToUserPage(usr);
+        new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/"+groupId);
         GroupPage groupPage = new GroupPage(usrWebDriver);
     }

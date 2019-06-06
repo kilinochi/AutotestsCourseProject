@@ -1,4 +1,5 @@
-import pages.GroupPage;
+import pages.group_page.GroupPage;
+import pages.group_page.posts.GroupPostPage;
 
 final class CreatorPostHandler {
 
@@ -16,11 +17,12 @@ final class CreatorPostHandler {
         textInPost = builder.textInPost;
     }
 
-    GroupPage.GroupTopicsTab createMusicPost() {
-        final GroupPage.PostDialogAlert postDialogAlert = groupPage.clickToCreatePostArea();
-        postDialogAlert.inputText(textInPost);
-        postDialogAlert.searchAndAttachMusic(musicSearchText, musicFrom, rangeMusic);
-        return postDialogAlert.clickToCreatePostButton();
+    GroupPostPage createMusicPost() {
+        return groupPage
+                .clickToCreatePostArea()
+                .inputText(textInPost)
+                .searchAndAttachMusic(musicSearchText, musicFrom, rangeMusic)
+                .clickToCreatePostButton();
     }
 
     static class Builder {
