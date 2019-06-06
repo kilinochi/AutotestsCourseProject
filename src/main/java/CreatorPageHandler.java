@@ -1,9 +1,6 @@
 
 import pages.group_page.GroupPage;
 import pages.groups_page.GroupsPage;
-import pages.groups_page.cards.GroupPageTypeCard;
-import pages.groups_page.dialog_alerts.ModalDialogAlert;
-import pages.groups_page.dialog_alerts.SelectGroupsDialogAlert;
 import pages.groups_page.side_bars.OwnerSideBar;
 import selenium_helpers.GroupsSubcategory;
 

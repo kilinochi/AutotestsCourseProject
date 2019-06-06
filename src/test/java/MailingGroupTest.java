@@ -60,7 +60,7 @@ public class MailingGroupTest {
         final List <String> usersWhoSendInvites = new LoginPage(usrWebDriver)
                 .clickToUserPage(usr)
                 .clickToNotificationDialogAlert()
-                .getUserNamesWhoSendInvitations();
+                .getUserListFromNotifications();
         final String userName = Iterables.tryFind(usersWhoSendInvites, new Predicate<String>() {
             @Override
             public boolean apply(@NullableDecl String s) {

@@ -5,6 +5,7 @@ import pages.BasePage;
 import pages.group_page.dialog_alerts.InviteDialogAlert;
 import pages.group_page.dialog_alerts.PostDialogAlert;
 import pages.group_page.settings.GroupSettingsPage;
+import pages.user_page.dialog_alerts.SendMessageDialogAlert;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -21,19 +22,14 @@ public final class GroupPage extends BasePage {
     private static final By DELETE_BUTTON_SELECTOR = By.xpath("//*[@id ='hook_FormButton_button_delete']");
     private static final By INVITE_TO_GROUP_BUTTON = By.xpath("//*[ @class ='u-menu_li __hl __custom']");
     private static final By CREATE_POST_LOCATOR = By.xpath("//*[@class='pf-with-ava __group-main __with-ava']");
-
-
     private static final By UL_OPTIONS_MENU = By.xpath("//*[@class='u-menu_a toggle-dropdown']");
-
     private static final By LI_OPTIONS_MENU = By.xpath("//*[@class='u-menu_li  __custom']");
-
     private static final By POST_LOCATORS = By.xpath("//*[@class='feed-w']");
+    private static final By SEND_MESSAGE_TO_GROUP_BUTTON_LOCATOR = By.xpath("//*[@class='u-menu_li u-menu_li__pro __hl']");
 
     private final String groupName;
     private final String groupId;
     private final WebDriver webDriver;
-
-    private WebElement createPostElem;
 
     public GroupPage(final WebDriver webDriver) {
         super(webDriver);
@@ -50,7 +46,7 @@ public final class GroupPage extends BasePage {
     public GroupSettingsPage clickToGroupSettings(){
         Element.click(webDriver, UL_OPTIONS_MENU);
         Check.checkListElementsNotEmpty(webDriver, LI_OPTIONS_MENU)
-                .get(0).click();
+                .get(1).click();
         return new GroupSettingsPage(webDriver);
     }
 
@@ -68,8 +64,13 @@ public final class GroupPage extends BasePage {
     }
 
     public PostDialogAlert clickToCreatePostArea() {
-        createPostElem.click();
+        Element.click(webDriver, CREATE_POST_LOCATOR);
         return new PostDialogAlert(webDriver);
+    }
+
+    public SendMessageDialogAlert clickToSendMessageButton() {
+        Element.click(webDriver, SEND_MESSAGE_TO_GROUP_BUTTON_LOCATOR);
+        return new SendMessageDialogAlert(webDriver);
     }
 
     public void deleteGroup() {
@@ -81,6 +82,5 @@ public final class GroupPage extends BasePage {
     @Override
     protected void check() {
         Check.checkElementIsDisplayed(webDriver, GROUP_NAME_SELECTOR);
-        createPostElem = Check.checkElementIsDisplayed(webDriver, CREATE_POST_LOCATOR);
     }
 }

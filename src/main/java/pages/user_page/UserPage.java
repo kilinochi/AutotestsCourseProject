@@ -3,6 +3,7 @@ package pages.user_page;
 import pages.BasePage;
 import pages.groups_page.GroupsPage;
 import pages.user_page.dialog_alerts.NotificationDialogAlert;
+import pages.user_page.dialog_alerts.SendMessageDialogAlert;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -14,12 +15,19 @@ public final class UserPage extends BasePage {
     private static final By GROUPS_LOCATOR = By.xpath(".//*[@class='navigation']/*[@class='nav-side __navigation']/*[@data-l='t,userAltGroup']");
     private static final By NOTIFICATION_TOOLBAR_LOCATOR = By.xpath("//*[ @data-l ='t,notifications']");
 
+    private static final By NOTIFICATION_MESSAGES_LOCATOR = By.xpath("//*[@class='toolbar_nav_a toolbar_nav_a__messa h-mod']");
+
     private final WebDriver webDriver;
 
     public UserPage(final WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.check();
+    }
+
+    public SendMessageDialogAlert clickToMessagesDialogAlert() {
+        Element.click(webDriver, NOTIFICATION_MESSAGES_LOCATOR);
+        return new SendMessageDialogAlert(webDriver);
     }
 
     public GroupsPage clickToGroupsSelector(){
