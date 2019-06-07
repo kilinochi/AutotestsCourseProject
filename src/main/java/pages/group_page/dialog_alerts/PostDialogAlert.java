@@ -7,7 +7,7 @@ import pages.group_page.posts.GroupPostPage;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 
-public class PostDialogAlert {
+public final class PostDialogAlert {
 
     private static final By MUSICS_LOCATORS = By.xpath("//*[@data-action='track']/div[2]/div[1]/div[1]");
     private static final By INPUT_PLACEHOLDER_LOCATOR = By.xpath("//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");

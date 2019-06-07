@@ -13,7 +13,7 @@ import pages.login_page.LoginPage;
 import pages.user_page.UserPage;
 import selenium_helpers.GroupsSubcategory;
 
-public class CreateGroupTest {
+public final class CreateGroupTest {
 
     private User creatorGroupUser;
     private WebDriver creatorWebDriver;

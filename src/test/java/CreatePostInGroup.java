@@ -11,7 +11,7 @@ import pages.groups_page.cards.MyGroupsCard;
 import pages.groups_page.side_bars.OwnerSideBar;
 import pages.login_page.LoginPage;
 
-public class CreatePostInGroup {
+public final class CreatePostInGroup {
 
     private WebDriver webDriver;
 

@@ -16,7 +16,7 @@ import pages.groups_page.GroupsPage;
 import pages.login_page.LoginPage;
 import pages.user_page.UserPage;
 
-public class SendMessageToGroup {
+public final class SendMessageToGroup {
 
     private static final String message = RandomString.make(5);
     private String groupId;

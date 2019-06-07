@@ -31,10 +31,10 @@ public final class Element {
     }
 
     public static List <String> getUserNamesFromNotifications(final WebDriver webDriver, final By locator) {
-        final List <WebElement> webElements =
-                Check.checkListElementsNotEmpty(webDriver, locator);
         final List <String> result = new ArrayList<>();
         try {
+            final List <WebElement> webElements =
+                    Check.checkListElementsNotEmpty(webDriver, locator);
             for(final WebElement webElement : webElements) {
                 Check.checkElementToBeClickAble(webDriver, webElement);
                 result.add(webElement.getAttribute("innerHTML"));
@@ -47,7 +47,6 @@ public final class Element {
                 Check.checkElementToBeClickAble(webDriver, webElement);
                 result.add(webElement.getAttribute("innerHTML"));
             }
-            return result;
         }
         return result;
     }

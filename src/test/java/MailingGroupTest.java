@@ -11,17 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import pages.group_page.GroupPage;
-import pages.group_page.dialog_alerts.InviteDialogAlert;
 import pages.groups_page.GroupsPage;
-import pages.groups_page.cards.MyGroupsCard;
-import pages.groups_page.side_bars.OwnerSideBar;
 import pages.login_page.LoginPage;
-import pages.user_page.UserPage;
-import pages.user_page.dialog_alerts.NotificationDialogAlert;
 import selenium_helpers.GroupsSubcategory;
 
-public class MailingGroupTest {
+public final class MailingGroupTest {
 
     private User ownerUserGroup;
     private WebDriver ownerWebDriver;
