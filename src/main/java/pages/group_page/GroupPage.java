@@ -10,6 +10,7 @@ import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 
 public final class GroupPage extends BasePage {
@@ -41,11 +42,11 @@ public final class GroupPage extends BasePage {
         groupId = this.webDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
     }
 
-    public List <WebElement> getAllPosts() {
+    public List<WebElement> getAllPosts() {
         return webDriver.findElements(POST_LOCATORS);
     }
 
-    public GroupSettingsPage clickToGroupSettings(){
+    public GroupSettingsPage clickToGroupSettings() {
         Element.click(webDriver, UL_OPTIONS_MENU);
         Check.checkListElementsNotEmpty(webDriver, LI_OPTIONS_MENU)
                 .get(1).click();
@@ -81,7 +82,7 @@ public final class GroupPage extends BasePage {
         Element.click(webDriver, DELETE_BUTTON_SELECTOR);
     }
 
-    public GroupPage clickToJoinToGroupButton(){
+    public GroupPage clickToJoinToGroupButton() {
         Element.click(webDriver, JOIN_TO_GROUP_BUTTON_LOCATOR);
         return this;
     }

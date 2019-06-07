@@ -7,8 +7,9 @@ import pages.group_page.GroupPage;
 import pages.groups_page.GroupsPage;
 import pages.login_page.LoginPage;
 
-public final class AssignAdminToGroup {
+//todo - дописать
 
+public final class AssignAdminToGroup {
 
     private String groupId;
     private WebDriver creatorsWebDriver;
@@ -16,28 +17,28 @@ public final class AssignAdminToGroup {
     private WebDriver usrWebDriver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         creatorsWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         User creator = UserFactory.getUser(User.Role.CREATOR);
         final GroupsPage creatorGroupsPage = new LoginPage(creatorsWebDriver)
-                    .clickToUserPage(creator)
-                    .clickToGroupsSelector();
+                .clickToUserPage(creator)
+                .clickToGroupsSelector();
         groupId = new CreatorPageHandler.Builder(creatorGroupsPage)
-                    .inputName("Tests")
-                    .inputDescription("More Tests")
-                    .build()
-                    .create()
-                    .getGroupId();
+                .inputName("Tests")
+                .inputDescription("More Tests")
+                .build()
+                .create()
+                .getGroupId();
     }
 
     @Test
     public void assignAdmin() {
         new LoginPage(usrWebDriver)
                 .clickToUserPage(usr);
-        usrWebDriver.get("https://ok.ru/group/"+groupId);
+        usrWebDriver.get("https://ok.ru/group/" + groupId);
         new GroupPage(usrWebDriver)
                 .clickToJoinToGroupButton();
-        creatorsWebDriver.get("https://ok.ru/group/"+groupId);
+        creatorsWebDriver.get("https://ok.ru/group/" + groupId);
         new GroupPage(creatorsWebDriver)
                 .clickToGroupSettings()
                 .clickToModeratorsTab();
@@ -45,7 +46,7 @@ public final class AssignAdminToGroup {
     }
 
     @After
-    public void afterTest(){
+    public void afterTest() {
 
     }
 }

@@ -15,12 +15,12 @@ public final class InviteDialogAlert {
         this.webDriver = webDriver;
     }
 
-    public InviteDialogAlert selectAllFriendsForInvite(){
+    public InviteDialogAlert selectAllFriendsForInvite() {
         Element.click(webDriver, INVITE_ALL_FRIEND_SELECTOR);
         return this;
     }
 
-    public InviteDialogAlert clickToInviteButton(){
+    public InviteDialogAlert clickToInviteButton() {
         Element.click(webDriver, INVITE_FRIENDS_BUTTON);
         return this;
     }

@@ -9,7 +9,7 @@ import selenium_helpers.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class NotificationDialogAlert  {
+public final class NotificationDialogAlert {
 
     private static final By NOTIFICATIONS_USERS_LOCATORS = By.xpath("//*[@data-l='nA,LINK_USER,t,user_link']");
 

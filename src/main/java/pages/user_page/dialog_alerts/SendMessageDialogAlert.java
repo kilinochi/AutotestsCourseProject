@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 
-public final class SendMessageDialogAlert  {
+public final class SendMessageDialogAlert {
 
     private static final By SEND_MESSAGE_INPUT_AREA_LOCATOR
             = By.xpath("//*[@data-placeholder='Напишите сообщение']");
@@ -23,12 +23,12 @@ public final class SendMessageDialogAlert  {
 
     private final WebDriver webDriver;
 
-    public SendMessageDialogAlert(final WebDriver webDriver){
+    public SendMessageDialogAlert(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public SendMessageDialogAlert sendMessage(String message) {
-        if(message != null) {
+        if (message != null) {
             Element.sendKeys(webDriver, SEND_MESSAGE_INPUT_AREA_LOCATOR, message);
         }
         return this;

@@ -23,13 +23,13 @@ public final class MailingGroupTest {
     private WebDriver usrWebDriver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         ownerUserGroup = UserFactory.getUser(User.Role.CREATOR);
         ownersWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         final GroupsPage creatorGroupsPage =
                 new LoginPage(ownersWebDriver)
-                .clickToUserPage(ownerUserGroup)
-                .clickToGroupsSelector();
+                        .clickToUserPage(ownerUserGroup)
+                        .clickToGroupsSelector();
         new CreatorPageHandler.Builder(creatorGroupsPage)
                 .inputName("Riksha")
                 .inputDescription("MoreRiksha")
@@ -51,7 +51,7 @@ public final class MailingGroupTest {
                 .clickToInviteButton()
                 .selectAllFriendsForInvite()
                 .clickToInviteButton();
-        final List <String> usersWhoSendInvites = new LoginPage(usrWebDriver)
+        final List<String> usersWhoSendInvites = new LoginPage(usrWebDriver)
                 .clickToUserPage(usr)
                 .clickToNotificationDialogAlert()
                 .getUserListFromNotifications();
@@ -65,7 +65,7 @@ public final class MailingGroupTest {
     }
 
     @After
-    public void afterTest(){
+    public void afterTest() {
         ownersWebDriver.get("https://ok.ru/groups");
         new CreatorPageHandler.Builder(new GroupsPage(ownersWebDriver))
                 .build()

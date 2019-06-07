@@ -30,12 +30,12 @@ public final class UserPage extends BasePage {
         return new SendMessageDialogAlert(webDriver);
     }
 
-    public GroupsPage clickToGroupsSelector(){
-        Element.click(webDriver,GROUPS_LOCATOR);
+    public GroupsPage clickToGroupsSelector() {
+        Element.click(webDriver, GROUPS_LOCATOR);
         return new GroupsPage(webDriver);
     }
 
-    public NotificationDialogAlert clickToNotificationDialogAlert(){
+    public NotificationDialogAlert clickToNotificationDialogAlert() {
         Element.click(webDriver, NOTIFICATION_TOOLBAR_LOCATOR);
         return new NotificationDialogAlert(webDriver);
     }

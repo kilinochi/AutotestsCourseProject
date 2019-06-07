@@ -25,7 +25,7 @@ public final class SendMessageToGroup {
     private WebDriver usrWebDriver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         User creatorGroupUser = UserFactory.getUser(User.Role.CREATOR);
         creatorWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         final GroupsPage groupsPage = new LoginPage(creatorWebDriver)
@@ -46,20 +46,20 @@ public final class SendMessageToGroup {
 
     @Test
     public void sendMessageToGroup() {
-       usrWebDriver
+        usrWebDriver
                 = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         usr = UserFactory.getUser(User.Role.USER);
         new LoginPage(usrWebDriver).clickToUserPage(usr);
-        usrWebDriver.get("https://ok.ru/group/"+groupId);
+        usrWebDriver.get("https://ok.ru/group/" + groupId);
         new GroupPage(usrWebDriver)
-            .clickToSendMessageButton()
-            .sendMessage(message)
-            .clickToSendMessageButton();
+                .clickToSendMessageButton()
+                .sendMessage(message)
+                .clickToSendMessageButton();
         creatorWebDriver.get("https://www.ok.ru/");
         final List<String> usersWhoSendMessagesToGroup = new UserPage(creatorWebDriver)
-            .clickToMessagesDialogAlert()
-            .clickToGroupsTab()
-            .getUserListFromNotifications();
+                .clickToMessagesDialogAlert()
+                .clickToGroupsTab()
+                .getUserListFromNotifications();
         final String userName = Iterables.tryFind(usersWhoSendMessagesToGroup, new Predicate<String>() {
             @Override
             public boolean apply(@NullableDecl String s) {
@@ -70,7 +70,7 @@ public final class SendMessageToGroup {
     }
 
     @After
-    public void afterTest(){
+    public void afterTest() {
         usrWebDriver.close();
         creatorWebDriver.get("https://ok.ru/groups");
         new CreatorPageHandler.Builder(new GroupsPage(creatorWebDriver))

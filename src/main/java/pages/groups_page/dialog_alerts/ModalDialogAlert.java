@@ -22,21 +22,21 @@ public final class ModalDialogAlert {
     }
 
     public ModalDialogAlert inputName(final String groupName) {
-        if(groupName != null) {
+        if (groupName != null) {
             Element.sendKeys(webDriver, NAME_GROUP_LOCATOR, groupName);
         }
         return this;
     }
 
     public ModalDialogAlert inputDescription(final String description) {
-        if(description != null) {
+        if (description != null) {
             Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
         }
         return this;
     }
 
     public ModalDialogAlert selectSubcategory(final GroupsSubcategory subcategory) {
-        if(subcategory != null) {
+        if (subcategory != null) {
             switch (subcategory) {
                 case AUTO:
                     Element.click(webDriver, CATEGORY_MENU_AUTO);
@@ -49,7 +49,7 @@ public final class ModalDialogAlert {
     }
 
     public ModalDialogAlert selectRestriction(boolean isRestriction) {
-        if(isRestriction) {
+        if (isRestriction) {
             Element.click(webDriver, AGE_18_SELECTOR);
         }
         return this;

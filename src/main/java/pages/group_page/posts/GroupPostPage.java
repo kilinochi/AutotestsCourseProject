@@ -18,7 +18,7 @@ public final class GroupPostPage extends BasePage {
         this.webDriver = webDriver;
     }
 
-    public List <WebElement> getAllPosts () {
+    public List<WebElement> getAllPosts() {
         return webDriver.findElements(POST_LOCATORS);
     }
 

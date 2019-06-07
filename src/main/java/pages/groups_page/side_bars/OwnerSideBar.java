@@ -19,16 +19,16 @@ public final class OwnerSideBar {
 
     private final WebDriver webDriver;
 
-    public OwnerSideBar(final WebDriver webDriver){
+    public OwnerSideBar(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public List<MyGroupsCard> clickToMineGroupsSelector() {
         Element.click(webDriver, MY_GROUPS_LOCATOR);
-        final List <WebElement> webElements = Check
+        final List<WebElement> webElements = Check
                 .checkListElementsNotEmpty(webDriver, GROUPS_CARDS_LOCATORS);
-        return new ArrayList<MyGroupsCard>(){{
-            for (final WebElement webElement: webElements) {
+        return new ArrayList<MyGroupsCard>() {{
+            for (final WebElement webElement : webElements) {
                 add(new MyGroupsCard(webElement, webDriver));
             }
         }};

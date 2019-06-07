@@ -27,8 +27,8 @@ public final class MessagesTab implements SettingsTab {
         return this;
     }
 
-    public MessagesTab selectCategoryWhoCanSendMessage(Category category){
-        switch (category){
+    public MessagesTab selectCategoryWhoCanSendMessage(Category category) {
+        switch (category) {
             case EVERYBODY:
                 Element.click(webDriver, EVERYBODY_SELECT_BOX);
                 break;

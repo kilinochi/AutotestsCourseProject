@@ -26,7 +26,7 @@ public final class LoginPage extends BasePage {
     public UserPage clickToUserPage(final User user) {
         Element.sendKeys(webDriver, LOGIN_LOCATOR, user.getLogin());
         Element.sendKeys(webDriver, PASSWORD_LOCATOR, user.getPassword());
-        Element.click(driver,SUBMIT_LOCATOR);
+        Element.click(driver, SUBMIT_LOCATOR);
         return new UserPage(driver);
     }
 

@@ -3,6 +3,7 @@ package pages.group_page.settings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.group_page.settings.tabs.AdminsTab;
+import pages.group_page.settings.tabs.MembersTab;
 import pages.group_page.settings.tabs.MessagesTab;
 import selenium_helpers.Check;
 
@@ -22,9 +23,9 @@ public final class GroupSettingsPage {
         return new AdminsTab(webDriver);
     }
 
-    public MessagesTab clickToMsgSettingsTab(){
+    public MessagesTab clickToMsgSettingsTab() {
         Check.checkListElementsNotEmpty(webDriver, MESSAGES_LOCATOR).get(3)
-            .click();
+                .click();
         return new MessagesTab(webDriver);
     }
 }

@@ -14,7 +14,7 @@ public final class CreatePostInGroup {
     private WebDriver webDriver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         User user = UserFactory.getUser(User.Role.CREATOR);
         webDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         new LoginPage(webDriver)
@@ -41,15 +41,15 @@ public final class CreatePostInGroup {
                 = new CreatorPostHandler.Builder(group)
                 .inputText("Rise Against!")
                 .searchAndAttachMusic("Rise Against - Satellite")
-                .fromRange(1,1)
+                .fromRange(1, 1)
                 .build()
                 .createMusicPost();
         final int nowCountPosts = groupPostPage.getAllPosts().size();
-        Assert.assertEquals(olderCountPosts + 1,  nowCountPosts);
+        Assert.assertEquals(olderCountPosts + 1, nowCountPosts);
     }
 
     @After
-    public void afterTest(){
+    public void afterTest() {
         webDriver.get("https://ok.ru/groups");
         new CreatorPageHandler.Builder(new GroupsPage(webDriver))
                 .build()

@@ -35,9 +35,9 @@ public final class Check {
         return !webElement.isDisplayed();
     }
 
-    public static List <WebElement> checkListElementsNotEmpty(final WebDriver webDriver, final By locator) {
+    public static List<WebElement> checkListElementsNotEmpty(final WebDriver webDriver, final By locator) {
         final List<WebElement> result = webDriver.findElements(locator);
-        Assert.assertTrue(new WebDriverWait(webDriver, 20).until(new ExpectedCondition<Boolean>(){
+        Assert.assertTrue(new WebDriverWait(webDriver, 20).until(new ExpectedCondition<Boolean>() {
             @NullableDecl
             public Boolean apply(@NullableDecl WebDriver webDriver) {
                 return !result.isEmpty();
@@ -45,5 +45,7 @@ public final class Check {
         }));
         return result;
     }
-    private Check(){}
+
+    private Check() {
+    }
 }

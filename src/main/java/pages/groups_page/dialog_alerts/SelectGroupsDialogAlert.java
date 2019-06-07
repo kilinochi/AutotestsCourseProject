@@ -20,9 +20,9 @@ public final class SelectGroupsDialogAlert {
     }
 
     public List<GroupPageTypeCard> getGroupPageList() {
-        final List <WebElement> webElements = Check
+        final List<WebElement> webElements = Check
                 .checkListElementsNotEmpty(webDriver, GROUPS_SELECT_LOCATOR);
-        return new ArrayList<GroupPageTypeCard>(){{
+        return new ArrayList<GroupPageTypeCard>() {{
             for (WebElement webElement : webElements) {
                 add(new GroupPageTypeCard(webElement, webDriver));
             }

@@ -1,4 +1,5 @@
 import config.AppConfig;
+import pages.BasePage;
 import selenium_helpers.Check;
 import model.User;
 
@@ -12,7 +13,7 @@ import pages.groups_page.GroupsPage;
 import pages.login_page.LoginPage;
 import selenium_helpers.GroupsSubcategory;
 
-public final class CreateGroupTest {
+public final class CreateGroupTest extends BaseTest {
 
     private User creatorGroupUser;
     private WebDriver creatorsWebDriver;
@@ -20,7 +21,7 @@ public final class CreateGroupTest {
     private WebDriver usrWebDriver;
 
     @Before
-    public void setUp()  {
+    public void setUp() {
         creatorGroupUser = UserFactory.getUser(User.Role.CREATOR);
         creatorsWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         usr = UserFactory.getUser(User.Role.USER);
@@ -41,7 +42,7 @@ public final class CreateGroupTest {
                 .create();
         final String groupId = newPage.getGroupId();
         new LoginPage(usrWebDriver).clickToUserPage(usr);
-        usrWebDriver.get("https://ok.ru/group/"+groupId);
+        usrWebDriver.get("https://ok.ru/group/" + groupId);
         Check.checkElementIsDisplayed(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
     }
 

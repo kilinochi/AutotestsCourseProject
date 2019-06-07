@@ -62,7 +62,7 @@ final class CreatorPageHandler {
             return this;
         }
 
-        Builder inputName(final String name){
+        Builder inputName(final String name) {
             this.groupName = name;
             return this;
         }

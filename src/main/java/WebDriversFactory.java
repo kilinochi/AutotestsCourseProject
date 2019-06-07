@@ -12,11 +12,12 @@ import java.util.concurrent.TimeUnit;
 
 final class WebDriversFactory {
 
-    private WebDriversFactory(){}
+    private WebDriversFactory() {
+    }
 
     static WebDriver getDriver(final Drivers driver) {
         WebDriver webDriver;
-        switch (driver){
+        switch (driver) {
             case EdgeDriver:
                 webDriver = new EdgeDriver();
                 break;

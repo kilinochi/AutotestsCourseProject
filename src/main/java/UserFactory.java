@@ -2,11 +2,12 @@ import config.AppConfig;
 import model.User;
 
 final class UserFactory {
-    private UserFactory(){}
+    private UserFactory() {
+    }
 
-    static User getUser(final User.Role role){
+    static User getUser(final User.Role role) {
         User user = null;
-        switch (role){
+        switch (role) {
             case USER:
                 user = new User(AppConfig.LOGIN_USER, AppConfig.PASSWORD, AppConfig.USER_ID, AppConfig.USER_USERNAME);
                 break;

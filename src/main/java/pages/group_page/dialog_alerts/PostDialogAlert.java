@@ -18,19 +18,19 @@ public final class PostDialogAlert {
 
     private final WebDriver webDriver;
 
-    public PostDialogAlert(final WebDriver webDriver){
+    public PostDialogAlert(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public PostDialogAlert inputText(final String text) {
-        if(text != null) {
+        if (text != null) {
             Element.sendKeys(webDriver, INPUT_PLACEHOLDER_LOCATOR, text);
         }
         return this;
     }
 
     public PostDialogAlert attachMusic(int from, int count) {
-        if(from >= 0 && count >= 0) {
+        if (from >= 0 && count >= 0) {
             Element.click(webDriver, ATTACH_MUSIC_BUTTON);
             Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
                     .stream()
@@ -43,7 +43,7 @@ public final class PostDialogAlert {
     }
 
     public PostDialogAlert searchAndAttachMusic(final String music, int from, int count) {
-        if(music != null && from >= 0 && count >= 0) {
+        if (music != null && from >= 0 && count >= 0) {
             Element.click(webDriver, ATTACH_MUSIC_BUTTON);
             Element.sendKeys(webDriver, INPUT_SEARCH_MUSIC_LOCATOR, music);
             Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
