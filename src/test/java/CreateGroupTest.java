@@ -10,30 +10,29 @@ import org.openqa.selenium.WebDriver;
 import pages.group_page.GroupPage;
 import pages.groups_page.GroupsPage;
 import pages.login_page.LoginPage;
-import pages.user_page.UserPage;
 import selenium_helpers.GroupsSubcategory;
 
 public final class CreateGroupTest {
 
     private User creatorGroupUser;
-    private WebDriver creatorWebDriver;
+    private WebDriver creatorsWebDriver;
     private User usr;
     private WebDriver usrWebDriver;
 
     @Before
     public void setUp()  {
         creatorGroupUser = UserFactory.getUser(User.Role.CREATOR);
-        creatorWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
+        creatorsWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         usr = UserFactory.getUser(User.Role.USER);
         usrWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
     }
 
     @Test
     public void createAndCheckRestrictionGroup() {
-        final LoginPage loginPageCreator = new LoginPage(creatorWebDriver);
-        final UserPage creatorUserPage = loginPageCreator.clickToUserPage(creatorGroupUser);
-        final GroupsPage groupsPage = creatorUserPage.clickToGroupsSelector();
-        final GroupPage newPage = new CreatorPageHandler.Builder(groupsPage)
+        final GroupsPage creatorsGroupsPage = new LoginPage(creatorsWebDriver)
+                .clickToUserPage(creatorGroupUser)
+                .clickToGroupsSelector();
+        final GroupPage newPage = new CreatorPageHandler.Builder(creatorsGroupsPage)
                 .inputName(AppConfig.GROUP_PAGE_NAME)
                 .inputDescription("This is a very cool Group!")
                 .category(GroupsSubcategory.AUTO)
@@ -48,11 +47,11 @@ public final class CreateGroupTest {
 
     @After
     public void afterTest() {
-        creatorWebDriver.get("https://ok.ru/groups");
-        new CreatorPageHandler.Builder(new GroupsPage(creatorWebDriver))
+        creatorsWebDriver.get("https://ok.ru/groups");
+        new CreatorPageHandler.Builder(new GroupsPage(creatorsWebDriver))
                 .build()
                 .deleteAllGroups();
-        creatorWebDriver.close();
+        creatorsWebDriver.close();
         usrWebDriver.close();
     }
 }

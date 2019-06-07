@@ -57,22 +57,22 @@ final class CreatorPageHandler {
             this.groupsPage = groupsPage;
         }
 
-        Builder isRestriction(boolean isRestriction) {
+        Builder isRestriction(final boolean isRestriction) {
             this.restriction = isRestriction;
             return this;
         }
 
-        Builder inputName(String name){
+        Builder inputName(final String name){
             this.groupName = name;
             return this;
         }
 
-        Builder inputDescription(String description) {
+        Builder inputDescription(final String description) {
             this.description = description;
             return this;
         }
 
-        Builder category(GroupsSubcategory subcategory) {
+        Builder category(final GroupsSubcategory subcategory) {
             this.groupsSubcategory = subcategory;
             return this;
         }

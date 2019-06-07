@@ -18,16 +18,16 @@ import selenium_helpers.GroupsSubcategory;
 public final class MailingGroupTest {
 
     private User ownerUserGroup;
-    private WebDriver ownerWebDriver;
+    private WebDriver ownersWebDriver;
     private User usr;
     private WebDriver usrWebDriver;
 
     @Before
     public void setUp(){
         ownerUserGroup = UserFactory.getUser(User.Role.CREATOR);
-        ownerWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
+        ownersWebDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         final GroupsPage creatorGroupsPage =
-                new LoginPage(ownerWebDriver)
+                new LoginPage(ownersWebDriver)
                 .clickToUserPage(ownerUserGroup)
                 .clickToGroupsSelector();
         new CreatorPageHandler.Builder(creatorGroupsPage)
@@ -43,8 +43,8 @@ public final class MailingGroupTest {
 
     @Test
     public void mailingTest() {
-        ownerWebDriver.get("https://ok.ru/groups");
-        new GroupsPage(ownerWebDriver)
+        ownersWebDriver.get("https://ok.ru/groups");
+        new GroupsPage(ownersWebDriver)
                 .getOwnerSideBar()
                 .clickToMineGroupsSelector().get(0)
                 .clickToGroup()
@@ -66,11 +66,11 @@ public final class MailingGroupTest {
 
     @After
     public void afterTest(){
-        ownerWebDriver.get("https://ok.ru/groups");
-        new CreatorPageHandler.Builder(new GroupsPage(ownerWebDriver))
+        ownersWebDriver.get("https://ok.ru/groups");
+        new CreatorPageHandler.Builder(new GroupsPage(ownersWebDriver))
                 .build()
                 .deleteAllGroups();
-        ownerWebDriver.close();
+        ownersWebDriver.close();
         usrWebDriver.close();
     }
 }

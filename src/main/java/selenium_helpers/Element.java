@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Element {
+    private Element(){}
+
     public static void click(final WebDriver webDriver, final By locator) {
             final WebElement webElement = Check
                     .checkElementIsDisplayed(webDriver, locator);

@@ -26,6 +26,8 @@ public final class GroupPage extends BasePage {
     private static final By LI_OPTIONS_MENU = By.xpath("//*[@class='u-menu_li  __custom']");
     private static final By POST_LOCATORS = By.xpath("//*[@class='feed-w']");
     private static final By SEND_MESSAGE_TO_GROUP_BUTTON_LOCATOR = By.xpath("//*[@class='u-menu_li u-menu_li__pro __hl']");
+    private static final By JOIN_TO_GROUP_BUTTON_LOCATOR =
+            By.xpath("//*[@class='button-pro __wide']");
 
     private final String groupName;
     private final String groupId;
@@ -77,6 +79,11 @@ public final class GroupPage extends BasePage {
         Element.click(webDriver, SETTINGS_SELECTOR);
         Element.click(webDriver, DELETE_GROUP_SELECTOR);
         Element.click(webDriver, DELETE_BUTTON_SELECTOR);
+    }
+
+    public GroupPage clickToJoinToGroupButton(){
+        Element.click(webDriver, JOIN_TO_GROUP_BUTTON_LOCATOR);
+        return this;
     }
 
     @Override

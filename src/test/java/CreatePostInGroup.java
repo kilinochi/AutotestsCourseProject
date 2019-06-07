@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import pages.group_page.GroupPage;
 import pages.group_page.posts.GroupPostPage;
 import pages.groups_page.GroupsPage;
-import pages.groups_page.cards.MyGroupsCard;
-import pages.groups_page.side_bars.OwnerSideBar;
 import pages.login_page.LoginPage;
 
 public final class CreatePostInGroup {
@@ -32,18 +30,21 @@ public final class CreatePostInGroup {
     @Test
     public void createMusicPost() {
         webDriver.get("https://ok.ru/groups");
-        final GroupsPage groupsPage = new GroupsPage(webDriver);
-        final OwnerSideBar userGroups = groupsPage.getOwnerSideBar();
-        final MyGroupsCard groupsCard = userGroups.clickToMineGroupsSelector().get(0);
-        final GroupPage group = groupsCard.clickToGroup();
-        int olderCountPosts = group.getAllPosts().size();
-        GroupPostPage groupPostPage = new CreatorPostHandler.Builder(group)
+        final GroupPage group = new GroupsPage(webDriver)
+                .getOwnerSideBar()
+                .clickToMineGroupsSelector().get(0)
+                .clickToGroup();
+        final int olderCountPosts = group
+                .getAllPosts()
+                .size();
+        final GroupPostPage groupPostPage
+                = new CreatorPostHandler.Builder(group)
                 .inputText("Rise Against!")
                 .searchAndAttachMusic("Rise Against - Satellite")
                 .fromRange(1,1)
                 .build()
                 .createMusicPost();
-        int nowCountPosts = groupPostPage.getAllPosts().size();
+        final int nowCountPosts = groupPostPage.getAllPosts().size();
         Assert.assertEquals(olderCountPosts + 1,  nowCountPosts);
     }
 

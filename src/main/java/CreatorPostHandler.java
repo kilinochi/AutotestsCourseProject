@@ -38,18 +38,18 @@ final class CreatorPostHandler {
             this.groupPage = groupPage;
         }
 
-        Builder fromRange(int musicFrom, int countMusic) {
+        Builder fromRange(final int musicFrom, final int countMusic) {
             this.musicFrom = musicFrom;
             this.countMusic = countMusic;
             return this;
         }
 
-        Builder searchAndAttachMusic(String musicTextSearch) {
+        Builder searchAndAttachMusic(final String musicTextSearch) {
             this.musicTextSearch = musicTextSearch;
             return this;
         }
 
-        Builder inputText(String textInPost) {
+        Builder inputText(final String textInPost) {
             this.textInPost = textInPost;
             return this;
         }
