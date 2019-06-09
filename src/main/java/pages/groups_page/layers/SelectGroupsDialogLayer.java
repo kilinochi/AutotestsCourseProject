@@ -1,4 +1,4 @@
-package pages.groups_page.dialog_alerts;
+package pages.groups_page.layers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,13 +9,13 @@ import selenium_helpers.Check;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SelectGroupsDialogAlert {
+public final class SelectGroupsDialogLayer {
 
     private static final By GROUPS_SELECT_LOCATOR = By.className("create-group-dialog_i");
 
     public final WebDriver webDriver;
 
-    public SelectGroupsDialogAlert(final WebDriver webDriver) {
+    public SelectGroupsDialogLayer(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 

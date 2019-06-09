@@ -17,23 +17,17 @@ public final class MembersTab {
 
     private final WebDriver webDriver;
 
-    public MembersTab(final WebDriver webDriver) {
+    MembersTab(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public MembersTab searchMembersByName(final String name) {
+    public List <MemberCard> searchMembersByName(final String name) {
         Element.sendKeys(webDriver, FIND_USER_PLACEHOLDER, name);
-        return this;
-    }
-
-
-    public List<String> membersNames() {
         final List<WebElement> webElements
                 = Check.checkListElementsNotEmpty(webDriver, USER_GRID_CARD_LOCATOR);
-        return new ArrayList<String>() {
-            {
+        return new ArrayList<MemberCard>() {{
                 for (WebElement webElement : webElements) {
-                    add(new MemberCard(webElement).getUserName());
+                    add(new MemberCard(webElement));
                 }
             }
         };

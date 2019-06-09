@@ -2,8 +2,8 @@ package pages.user_page;
 
 import pages.BasePage;
 import pages.groups_page.GroupsPage;
-import pages.user_page.dialog_alerts.NotificationDialogAlert;
-import pages.user_page.dialog_alerts.SendMessageDialogAlert;
+import pages.user_page.layers.NotificationDialogLayer;
+import pages.user_page.layers.SendMessageDialogLayer;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -25,9 +25,9 @@ public final class UserPage extends BasePage {
         this.check();
     }
 
-    public SendMessageDialogAlert clickToMessagesDialogAlert() {
+    public SendMessageDialogLayer clickToMessagesDialogAlert() {
         Element.click(webDriver, NOTIFICATION_MESSAGES_LOCATOR);
-        return new SendMessageDialogAlert(webDriver);
+        return new SendMessageDialogLayer(webDriver);
     }
 
     public GroupsPage clickToGroupsSelector() {
@@ -35,9 +35,9 @@ public final class UserPage extends BasePage {
         return new GroupsPage(webDriver);
     }
 
-    public NotificationDialogAlert clickToNotificationDialogAlert() {
+    public NotificationDialogLayer clickToNotificationDialogAlert() {
         Element.click(webDriver, NOTIFICATION_TOOLBAR_LOCATOR);
-        return new NotificationDialogAlert(webDriver);
+        return new NotificationDialogLayer(webDriver);
     }
 
     @Override

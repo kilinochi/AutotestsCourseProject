@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.group_page.GroupPage;
-import pages.group_page.settings.tabs.SettingsTab;
+import pages.group_page.settings.tabs.Tab;
 import pages.groups_page.GroupsPage;
 import pages.login_page.LoginPage;
 import pages.user_page.UserPage;
@@ -38,7 +38,7 @@ public final class SendMessageToGroup {
                 .create()
                 .clickToGroupSettings()
                 .clickToMsgSettingsTab()
-                .selectCategoryWhoCanSendMessage(SettingsTab.Category.EVERYBODY)
+                .selectCategoryWhoCanSendMessage(Tab.Category.EVERYBODY)
                 .clickToSaveButton()
                 .clickToGroupProfile()
                 .getGroupId();

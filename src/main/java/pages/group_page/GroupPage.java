@@ -2,10 +2,10 @@ package pages.group_page;
 
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
-import pages.group_page.dialog_alerts.InviteDialogAlert;
-import pages.group_page.dialog_alerts.PostDialogAlert;
+import pages.group_page.layers.InviteDialogLayer;
+import pages.group_page.layers.PostDialogLayer;
 import pages.group_page.settings.GroupSettingsPage;
-import pages.user_page.dialog_alerts.SendMessageDialogAlert;
+import pages.user_page.layers.SendMessageDialogLayer;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -14,8 +14,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.List;
 
 public final class GroupPage extends BasePage {
-
-    public static final By RESTRICTION_LOCATOR = By.xpath("//*[@class ='stub-empty __18plus']");
 
     private static final By GROUP_NAME_SELECTOR = By.xpath("//*[ @class ='mctc_name_tx']");
     private static final By SETTINGS_SELECTOR = By.xpath("//*[ @class ='u-menu_li expand-action-item']");
@@ -61,19 +59,19 @@ public final class GroupPage extends BasePage {
         return groupName;
     }
 
-    public InviteDialogAlert clickToInviteButton() {
+    public InviteDialogLayer clickToInviteButton() {
         Element.click(webDriver, INVITE_TO_GROUP_BUTTON);
-        return new InviteDialogAlert(webDriver);
+        return new InviteDialogLayer(webDriver);
     }
 
-    public PostDialogAlert clickToCreatePostArea() {
+    public PostDialogLayer clickToCreatePostArea() {
         Element.click(webDriver, CREATE_POST_LOCATOR);
-        return new PostDialogAlert(webDriver);
+        return new PostDialogLayer(webDriver);
     }
 
-    public SendMessageDialogAlert clickToSendMessageButton() {
+    public SendMessageDialogLayer clickToSendMessageButton() {
         Element.click(webDriver, SEND_MESSAGE_TO_GROUP_BUTTON_LOCATOR);
-        return new SendMessageDialogAlert(webDriver);
+        return new SendMessageDialogLayer(webDriver);
     }
 
     public void deleteGroup() {

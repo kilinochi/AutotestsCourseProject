@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import pages.group_page.GroupPage;
 import selenium_helpers.Element;
 
-public final class MessagesTab implements SettingsTab {
+public final class MessagesTab implements Tab {
 
     private static final By SAVE_BUTTON_LOCATOR = By.xpath("//*[@name='button_save_settings']");
     private static final By EVERYBODY_SELECT_BOX = By.xpath("//*[@value='EVERYBODY']");

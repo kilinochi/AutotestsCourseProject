@@ -2,7 +2,7 @@ package pages.groups_page.cards;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.groups_page.dialog_alerts.ModalDialogAlert;
+import pages.groups_page.layers.ModalDialogLayer;
 
 public final class GroupPageTypeCard {
     private final WebElement webElement;
@@ -13,8 +13,8 @@ public final class GroupPageTypeCard {
         this.webDriver = webDriver;
     }
 
-    public ModalDialogAlert clickToModalDialogAlert() {
+    public ModalDialogLayer clickToModalDialogAlert() {
         webElement.click();
-        return new ModalDialogAlert(webDriver);
+        return new ModalDialogLayer(webDriver);
     }
 }

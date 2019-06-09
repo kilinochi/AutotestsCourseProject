@@ -1,16 +1,13 @@
-package pages.user_page.dialog_alerts;
+package pages.user_page.layers;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import selenium_helpers.Check;
 import selenium_helpers.Element;
 
-public final class SendMessageDialogAlert {
+public final class SendMessageDialogLayer {
 
     private static final By SEND_MESSAGE_INPUT_AREA_LOCATOR
             = By.xpath("//*[@data-placeholder='Напишите сообщение']");
@@ -23,11 +20,11 @@ public final class SendMessageDialogAlert {
 
     private final WebDriver webDriver;
 
-    public SendMessageDialogAlert(final WebDriver webDriver) {
+    public SendMessageDialogLayer(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public SendMessageDialogAlert sendMessage(String message) {
+    public SendMessageDialogLayer sendMessage(String message) {
         if (message != null) {
             Element.sendKeys(webDriver, SEND_MESSAGE_INPUT_AREA_LOCATOR, message);
         }
@@ -35,12 +32,12 @@ public final class SendMessageDialogAlert {
     }
 
 
-    public SendMessageDialogAlert clickToSendMessageButton() {
+    public SendMessageDialogLayer clickToSendMessageButton() {
         Element.click(webDriver, SEND_MESSAGE_BUTTON_LOCATOR);
         return this;
     }
 
-    public SendMessageDialogAlert clickToGroupsTab() {
+    public SendMessageDialogLayer clickToGroupsTab() {
         Element.click(webDriver, GROUP_TAB_LOCATOR);
         return this;
     }

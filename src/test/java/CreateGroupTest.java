@@ -1,5 +1,5 @@
 import config.AppConfig;
-import pages.BasePage;
+import org.junit.Assert;
 import selenium_helpers.Check;
 import model.User;
 
@@ -43,7 +43,7 @@ public final class CreateGroupTest extends BaseTest {
         final String groupId = newPage.getGroupId();
         new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/" + groupId);
-        Check.checkElementIsDisplayed(usrWebDriver, GroupPage.RESTRICTION_LOCATOR);
+        Assert.assertTrue(usrWebDriver.findElement(AppConfig.RESTRICTION_LOCATOR).isDisplayed());
     }
 
     @After

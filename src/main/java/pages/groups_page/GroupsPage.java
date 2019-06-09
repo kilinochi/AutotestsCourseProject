@@ -1,8 +1,8 @@
 package pages.groups_page;
 
 import pages.BasePage;
-import pages.groups_page.dialog_alerts.SelectGroupsDialogAlert;
-import pages.groups_page.side_bars.OwnerSideBar;
+import pages.groups_page.layers.SelectGroupsDialogLayer;
+import pages.groups_page.side_bars.GroupsSideBar;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 import org.openqa.selenium.By;
@@ -22,14 +22,14 @@ public final class GroupsPage extends BasePage {
         this.check();
     }
 
-    public SelectGroupsDialogAlert clickToSelectGroupDialogAlert() {
+    public SelectGroupsDialogLayer clickToSelectGroupDialogAlert() {
         Element.click(webDriver, CREATE_GROUP_LOCATOR);
-        return new SelectGroupsDialogAlert(webDriver);
+        return new SelectGroupsDialogLayer(webDriver);
     }
 
-    public OwnerSideBar getOwnerSideBar() {
+    public GroupsSideBar getOwnerSideBar() {
         Check.checkElementIsDisplayed(webDriver, OWNER_SIDEBAR_LOCATOR);
-        return new OwnerSideBar(webDriver);
+        return new GroupsSideBar(webDriver);
     }
 
     @Override

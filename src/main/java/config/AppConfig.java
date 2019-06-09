@@ -1,6 +1,7 @@
 package config;
 
 import net.bytebuddy.utility.RandomString;
+import org.openqa.selenium.By;
 
 public final class AppConfig {
     public static final String LOGIN_CREATOR = "technopolisBot151";
@@ -14,4 +15,6 @@ public final class AppConfig {
     public static final String BASE_URL = "https://ok.ru/";
     public static final String GROUP_PAGE_NAME = RandomString.make(10);
     public static final String PASSWORD = "technopolis16";
+
+    public static final By RESTRICTION_LOCATOR = By.xpath("//*[@class ='stub-empty __18plus']");
 }

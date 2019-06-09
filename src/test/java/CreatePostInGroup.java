@@ -15,7 +15,7 @@ public final class CreatePostInGroup {
 
     @Before
     public void setUp() {
-        User user = UserFactory.getUser(User.Role.CREATOR);
+        final User user = UserFactory.getUser(User.Role.CREATOR);
         webDriver = WebDriversFactory.getDriver(Drivers.ChromeDriver);
         new LoginPage(webDriver)
                 .clickToUserPage(user)

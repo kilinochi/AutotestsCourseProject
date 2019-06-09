@@ -1,4 +1,4 @@
-package pages.group_page.dialog_alerts;
+package pages.group_page.layers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import pages.group_page.posts.GroupPostPage;
 import selenium_helpers.Check;
 import selenium_helpers.Element;
 
-public final class PostDialogAlert {
+public final class PostDialogLayer {
 
     private static final By MUSICS_LOCATORS = By.xpath("//*[@data-action='track']/div[2]/div[1]/div[1]");
     private static final By INPUT_PLACEHOLDER_LOCATOR = By.xpath("//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");
@@ -18,18 +18,18 @@ public final class PostDialogAlert {
 
     private final WebDriver webDriver;
 
-    public PostDialogAlert(final WebDriver webDriver) {
+    public PostDialogLayer(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public PostDialogAlert inputText(final String text) {
+    public PostDialogLayer inputText(final String text) {
         if (text != null) {
             Element.sendKeys(webDriver, INPUT_PLACEHOLDER_LOCATOR, text);
         }
         return this;
     }
 
-    public PostDialogAlert attachMusic(int from, int count) {
+    public PostDialogLayer attachMusic(int from, int count) {
         if (from >= 0 && count >= 0) {
             Element.click(webDriver, ATTACH_MUSIC_BUTTON);
             Check.checkListElementsNotEmpty(webDriver, MUSICS_LOCATORS)
@@ -42,7 +42,7 @@ public final class PostDialogAlert {
         return this;
     }
 
-    public PostDialogAlert searchAndAttachMusic(final String music, int from, int count) {
+    public PostDialogLayer searchAndAttachMusic(final String music, int from, int count) {
         if (music != null && from >= 0 && count >= 0) {
             Element.click(webDriver, ATTACH_MUSIC_BUTTON);
             Element.sendKeys(webDriver, INPUT_SEARCH_MUSIC_LOCATOR, music);

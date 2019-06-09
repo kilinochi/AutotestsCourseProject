@@ -1,6 +1,6 @@
 package pages.group_page.settings.tabs;
 
-public interface SettingsTab {
+public interface Tab {
     enum Category {
         NOBODY, MEMBERS, EVERYBODY
     }

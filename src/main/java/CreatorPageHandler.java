@@ -1,7 +1,7 @@
 
 import pages.group_page.GroupPage;
 import pages.groups_page.GroupsPage;
-import pages.groups_page.side_bars.OwnerSideBar;
+import pages.groups_page.side_bars.GroupsSideBar;
 import selenium_helpers.GroupsSubcategory;
 
 final class CreatorPageHandler {
@@ -33,15 +33,16 @@ final class CreatorPageHandler {
     }
 
     GroupsPage deleteAllGroups() {
-        final OwnerSideBar ownerSideBar
+        final GroupsSideBar groupsSideBar
                 = groupsPage.getOwnerSideBar();
-        while (ownerSideBar.isVisible()) {
-            ownerSideBar
+        do  {
+            groupsSideBar
                     .clickToMineGroupsSelector()
                     .get(0)
                     .clickToGroup()
                     .deleteGroup();
         }
+        while (groupsSideBar.isVisible());
         return groupsPage;
     }
 

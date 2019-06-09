@@ -25,8 +25,8 @@ public final class Check {
     }
 
     static WebElement checkElementToBeClickAble(final WebDriver webDriver, final WebElement webElement) {
-        new WebDriverWait(webDriver, 15).until(ExpectedConditions
-                .elementToBeClickable(webElement));
+        Assert.assertTrue(new WebDriverWait(webDriver, 15)
+                .until(ExpectedConditions.elementToBeClickable(webElement)).isDisplayed());
         return webElement;
     }
 

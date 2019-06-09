@@ -1,4 +1,4 @@
-package pages.groups_page.dialog_alerts;
+package pages.groups_page.layers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,7 +6,7 @@ import pages.group_page.GroupPage;
 import selenium_helpers.Element;
 import selenium_helpers.GroupsSubcategory;
 
-public final class ModalDialogAlert {
+public final class ModalDialogLayer {
 
     private static final By GROUPS_SELECT_LOCATOR = By.className("create-group-dialog_i");
     private static final By NAME_GROUP_LOCATOR = By.name("st.layer.name");
@@ -17,25 +17,25 @@ public final class ModalDialogAlert {
 
     private final WebDriver webDriver;
 
-    public ModalDialogAlert(final WebDriver webDriver) {
+    public ModalDialogLayer(final WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public ModalDialogAlert inputName(final String groupName) {
+    public ModalDialogLayer inputName(final String groupName) {
         if (groupName != null) {
             Element.sendKeys(webDriver, NAME_GROUP_LOCATOR, groupName);
         }
         return this;
     }
 
-    public ModalDialogAlert inputDescription(final String description) {
+    public ModalDialogLayer inputDescription(final String description) {
         if (description != null) {
             Element.sendKeys(webDriver, DESCRIPTION_LOCATOR, description);
         }
         return this;
     }
 
-    public ModalDialogAlert selectSubcategory(final GroupsSubcategory subcategory) {
+    public ModalDialogLayer selectSubcategory(final GroupsSubcategory subcategory) {
         if (subcategory != null) {
             switch (subcategory) {
                 case AUTO:
@@ -48,7 +48,7 @@ public final class ModalDialogAlert {
         return this;
     }
 
-    public ModalDialogAlert selectRestriction(boolean isRestriction) {
+    public ModalDialogLayer selectRestriction(boolean isRestriction) {
         if (isRestriction) {
             Element.click(webDriver, AGE_18_SELECTOR);
         }
