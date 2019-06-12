@@ -1,10 +1,7 @@
 package selenium_helpers;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +11,36 @@ public final class Element {
     }
 
     public static void click(final WebDriver webDriver, final By locator) {
-        final WebElement webElement = Check
-                .checkElementIsDisplayed(webDriver, locator);
-        Check.checkElementToBeClickAble(webDriver, webElement)
-                .click();
+        try {
+            final WebElement webElement = Check
+                    .checkElementIsDisplayed(webDriver, locator);
+            Check.checkElementToBeClickable(webDriver, webElement)
+                    .click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void sendKeys(final WebDriver webDriver, final By locator, final String description) {
-        final WebElement webElement = Check
-                .checkElementIsDisplayed(webDriver, locator);
-        Check.checkElementToBeClickAble(webDriver, webElement)
-                .sendKeys(description);
+        try {
+            final WebElement webElement = Check
+                    .checkElementIsDisplayed(webDriver, locator);
+            Check.checkElementToBeClickable(webDriver, webElement)
+                    .sendKeys(description);
+        }
+        catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getAttribute(final WebDriver webDriver, final By locator, final String attribute) {
-        return Check
-                .checkElementIsDisplayed(webDriver, locator)
-                .getAttribute(attribute);
+        try {
+            return Check
+                    .checkElementIsDisplayed(webDriver, locator)
+                    .getAttribute(attribute);
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
     public static List<String> getUserNamesFromNotifications(final WebDriver webDriver, final By locator) {
@@ -39,14 +49,14 @@ public final class Element {
             final List<WebElement> webElements =
                     Check.checkListElementsNotEmpty(webDriver, locator);
             for (final WebElement webElement : webElements) {
-                Check.checkElementToBeClickAble(webDriver, webElement);
+                Check.checkElementToBeClickable(webDriver, webElement);
                 result.add(webElement.getAttribute("innerHTML"));
             }
         } catch (StaleElementReferenceException e) {
             final List<WebElement> webElementsA =
                     Check.checkListElementsNotEmpty(webDriver, locator);
             for (final WebElement webElement : webElementsA) {
-                Check.checkElementToBeClickAble(webDriver, webElement);
+                Check.checkElementToBeClickable(webDriver, webElement);
                 result.add(webElement.getAttribute("innerHTML"));
             }
         }

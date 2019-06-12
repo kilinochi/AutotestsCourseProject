@@ -1,6 +1,5 @@
 import config.AppConfig;
 import org.junit.Assert;
-import selenium_helpers.Check;
 import model.User;
 
 import org.junit.After;

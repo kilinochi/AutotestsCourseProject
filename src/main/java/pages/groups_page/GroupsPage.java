@@ -1,5 +1,6 @@
 package pages.groups_page;
 
+import org.openqa.selenium.NoSuchElementException;
 import pages.BasePage;
 import pages.groups_page.layers.SelectGroupsDialogLayer;
 import pages.groups_page.side_bars.GroupsSideBar;

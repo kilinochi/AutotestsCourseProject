@@ -28,6 +28,8 @@ public final class GroupPage extends BasePage {
     private static final By JOIN_TO_GROUP_BUTTON_LOCATOR =
             By.xpath("//*[@class='button-pro __wide']");
 
+    private static final Object NO_NAME = new Object();
+
     private final String groupName;
     private final String groupId;
     private final WebDriver webDriver;
@@ -36,7 +38,9 @@ public final class GroupPage extends BasePage {
         super(webDriver);
         this.webDriver = webDriver;
         this.check();
-        groupName = Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML");
+        groupName
+                =  Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML") != null ?
+        Element.getAttribute(webDriver, GROUP_NAME_SELECTOR, "innerHTML") : (String) NO_NAME;
         groupId = this.webDriver.getCurrentUrl().split("\\.")[1].split("/")[2];
     }
 
