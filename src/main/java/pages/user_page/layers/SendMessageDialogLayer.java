@@ -10,9 +10,9 @@ import selenium_helpers.Element;
 public final class SendMessageDialogLayer {
 
     private static final By SEND_MESSAGE_INPUT_AREA_LOCATOR
-            = By.xpath("//*[@data-placeholder='Напишите сообщение']");
+            = By.xpath("//*[@data-l ='t,msgInput']");
     private static final By SEND_MESSAGE_BUTTON_LOCATOR =
-            By.xpath("//*[@class='button-pro comments_add-controls_save']");
+            By.xpath(".//*[@data-l ='t,sendButton']");
     private static final By GROUP_TAB_LOCATOR =
             By.xpath("//*[@data-l='t,tabGroups']");
     private static final By NAMES_WHO_SENDS_MESSAGES_TO_GROUP_LOCATOR =
