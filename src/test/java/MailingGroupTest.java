@@ -1,10 +1,6 @@
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import model.User;
 
 import java.util.List;
-
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -55,13 +51,7 @@ public final class MailingGroupTest {
                 .clickToUserPage(usr)
                 .clickToNotificationDialogAlert()
                 .getUserListFromNotifications();
-        final String userName = Iterables.tryFind(usersWhoSendInvites, new Predicate<String>() {
-            @Override
-            public boolean apply(@NullableDecl String s) {
-                return ownerUserGroup.getUserName().equals(s);
-            }
-        }).or("Not found User!");
-        Assert.assertEquals(ownerUserGroup.getUserName(), userName);
+        Assert.assertTrue(usersWhoSendInvites.contains(ownerUserGroup.getUserName()));
     }
 
     @After

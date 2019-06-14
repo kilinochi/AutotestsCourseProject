@@ -56,16 +56,7 @@ public final class SendMessageToGroup {
                 .clickToMessagesDialogAlert()
                 .clickToGroupsTab()
                 .getUserListFromNotifications();
-        Assert.assertTrue(checkName(usersWhoSendMessagesToGroup, usr.getUserName()));
-    }
-
-    private static boolean checkName(final List <String> names, final String aName) {
-        for(final String name : names) {
-            if(name.equals(aName)) {
-                return true;
-            }
-        }
-        return false;
+        Assert.assertTrue(usersWhoSendMessagesToGroup.contains(usr.getUserName()));
     }
 
     @After
