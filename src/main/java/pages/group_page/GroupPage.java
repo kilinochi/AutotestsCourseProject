@@ -1,6 +1,10 @@
 package pages.group_page;
 
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.group_page.layers.InviteDialogLayer;
 import pages.group_page.layers.PostDialogLayer;
@@ -12,6 +16,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public final class GroupPage extends BasePage {
 
@@ -45,6 +50,7 @@ public final class GroupPage extends BasePage {
     }
 
     public List<WebElement> getAllPosts() {
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return webDriver.findElements(POST_LOCATORS);
     }
 

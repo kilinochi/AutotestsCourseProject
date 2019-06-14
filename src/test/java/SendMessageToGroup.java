@@ -1,10 +1,7 @@
 import java.util.List;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import model.User;
 import net.bytebuddy.utility.RandomString;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,7 +18,6 @@ public final class SendMessageToGroup {
     private static final String message = RandomString.make(5);
     private String groupId;
     private WebDriver creatorWebDriver;
-    private User usr;
     private WebDriver usrWebDriver;
 
     @Before
@@ -48,7 +44,7 @@ public final class SendMessageToGroup {
     public void sendMessageToGroup() {
         usrWebDriver
                 = WebDriversFactory.getDriver(Drivers.ChromeDriver);
-        usr = UserFactory.getUser(User.Role.USER);
+        final User usr = UserFactory.getUser(User.Role.USER);
         new LoginPage(usrWebDriver).clickToUserPage(usr);
         usrWebDriver.get("https://ok.ru/group/" + groupId);
         new GroupPage(usrWebDriver)
@@ -60,13 +56,16 @@ public final class SendMessageToGroup {
                 .clickToMessagesDialogAlert()
                 .clickToGroupsTab()
                 .getUserListFromNotifications();
-        final String userName = Iterables.tryFind(usersWhoSendMessagesToGroup, new Predicate<String>() {
-            @Override
-            public boolean apply(@NullableDecl String s) {
-                return usr.getUserName().equals(s);
+        Assert.assertTrue(checkName(usersWhoSendMessagesToGroup, usr.getUserName()));
+    }
+
+    private static boolean checkName(final List <String> names, final String aName) {
+        for(final String name : names) {
+            if(name.equals(aName)) {
+                return true;
             }
-        }).or("Not found User!");
-        Assert.assertEquals(usr.getUserName(), userName);
+        }
+        return false;
     }
 
     @After
